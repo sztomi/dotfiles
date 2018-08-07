@@ -1,3 +1,4 @@
+export ZPLUG_HOME="$HOME/.zplug"
 source ~/.zplug/init.zsh
 
 # Make sure to use double quotes
@@ -20,10 +21,19 @@ zplug load
 
 eval $(thefuck --alias)
 
+case `uname` in
+  Darwin)
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+  ;;
+
+  Linux)
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
-export EDITOR=nvim
+  ;;
+esac
 
+export EDITOR=nvim
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export DOTPUP_HOME="$HOME/dotfiles"
