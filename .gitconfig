@@ -1,0 +1,22 @@
+[user]
+	email = szelei.t@gmail.com
+	name = Tamás Szelei
+
+[alias]
+	co = checkout
+	cob = checkout -b
+	au = add -u
+	cm = commit
+	fix = commit --fixup HEAD
+	ls = log --oneline
+	st = status -sb
+	rb = rebase
+	rbc = rebase --continue
+	rba = rebase --abort
+	purr = pull --rebase
+
+[pull]
+	ff-only = true
+
+[rebase]
+	autosquash = true

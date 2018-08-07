@@ -1,0 +1,11 @@
+{
+  "operations": {
+    "Linux": {
+      ".gitconfig": "$HOME/.gitconfig",
+      ".tmux": "$HOME/.tmux",
+      ".tmux.conf": "$HOME/.tmux.conf",
+      ".zplug": "$HOME/.zplug",
+      ".zshrc": "$HOME/.zshrc"
+    }
+  }
+}
