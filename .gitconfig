@@ -14,6 +14,8 @@
 	rbc = rebase --continue
 	rba = rebase --abort
 	purr = pull --rebase
+	afp = !git add -u && git commit --fixup HEAD && git push && :
+	cp = cherry-pick
 
 [pull]
 	ff-only = true
