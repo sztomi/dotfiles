@@ -22,3 +22,5 @@
 
 [rebase]
 	autosquash = true
+[push]
+	default = current
