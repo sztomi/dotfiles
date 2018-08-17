@@ -7,6 +7,7 @@
     },
     "Linux": {
       ".gitconfig": "$HOME/.gitconfig",
+      ".gitignore": "$HOME/.gitignore",
       ".tmux.conf": "$HOME/.tmux.conf",
       ".zsh_aliases": "$HOME/.zsh_aliases",
       ".zshrc": "$HOME/.zshrc"
