@@ -42,6 +42,7 @@ export EDITOR=nvim
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$HOME/Library/Python/3.6/bin:$PATH"
 export DOTPUP_HOME="$HOME/dotfiles"
+export TERM=xterm-256color
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
