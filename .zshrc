@@ -8,7 +8,6 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "supercrabtree/k"
 zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
 
-
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -18,6 +17,12 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
+
+# History
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILE=~/.zsh_history
+bindkey '^R' history-incremental-search-backward
 
 eval $(thefuck --alias)
 
@@ -35,7 +40,7 @@ esac
 
 export EDITOR=nvim
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$PYENV_ROOT/bin:$HOME/Library/Python/3.6/bin:$PATH"
 export DOTPUP_HOME="$HOME/dotfiles"
 
 if command -v pyenv 1>/dev/null 2>&1; then
