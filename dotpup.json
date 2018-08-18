@@ -8,6 +8,7 @@
       ".zshrc": "$HOME/.zshrc"
     },
     "Linux": {
+      ".config/nvim/init.vim": "$HOME/.config/nvim/init.vim",
       ".gitconfig": "$HOME/.gitconfig",
       ".gitignore": "$HOME/.gitignore",
       ".tmux.conf": "$HOME/.tmux.conf",
