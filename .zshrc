@@ -38,11 +38,13 @@ export LANG=C.UTF-8
   ;;
 esac
 
-export EDITOR=nvim
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$HOME/Library/Python/3.6/bin:$PATH"
+
+export EDITOR=nvim
 export DOTPUP_HOME="$HOME/dotfiles"
 export TERM=xterm-256color
+export CONAN_VERBOSE_TRACEBACK=1
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
