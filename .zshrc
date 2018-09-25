@@ -40,6 +40,7 @@ export LANG=C.UTF-8
   ;;
 esac
 
+export PYTHON_CONFIGURE_OPTS="--enable-framework"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$HOME/Library/Python/3.6/bin:$PATH:$HOME/.linuxbrew/bin"
 export HOSTALIASES=$HOME/.hosts
