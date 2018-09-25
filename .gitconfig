@@ -16,6 +16,7 @@
 	purr = pull --rebase
 	afp = !git add -u && git commit --fixup HEAD && git push && :
 	cp = cherry-pick
+  mbs = !git branch -a | grep tamas
 
 [pull]
 	ff-only = true
