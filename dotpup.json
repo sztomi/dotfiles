@@ -3,7 +3,7 @@
     "Darwin": {
       ".config/nvim/init.vim": "$HOME/.config/nvim/init.vim",
       ".gitconfig": "$HOME/.gitconfig",
-      ".gitignore": "$HOME/.gitignore",
+      ".gitignore_global": "$HOME/.gitignore_global",
       ".tmux.conf": "$HOME/.tmux.conf",
       ".zsh_aliases": "$HOME/.zsh_aliases",
       ".zshrc": "$HOME/.zshrc"
@@ -11,7 +11,7 @@
     "Linux": {
       ".config/nvim/init.vim": "$HOME/.config/nvim/init.vim",
       ".gitconfig": "$HOME/.gitconfig",
-      ".gitignore": "$HOME/.gitignore",
+      ".gitignore_global": "$HOME/.gitignore_global",
       ".hosts": "$HOME/.hosts",
       ".ssh/config": "$HOME/.ssh/config",
       ".tmux.conf": "$HOME/.tmux.conf",
