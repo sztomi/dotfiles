@@ -1,1 +1,6 @@
 alias take='f(){ mkdir $1; cd $1 };f'
+alias sudo='sudo '
+alias sc=systemctl
+alias jc=journalctl
+
+
