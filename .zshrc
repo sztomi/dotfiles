@@ -49,6 +49,7 @@ export EDITOR=nvim
 export DOTPUP_HOME="$HOME/dotfiles"
 export TERM=xterm-256color
 export CONAN_VERBOSE_TRACEBACK=1
+export DOTNET_TELEMETRY_OPTOUT=1
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
