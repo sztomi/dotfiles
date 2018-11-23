@@ -17,6 +17,8 @@
 	afp = !git add -u && git commit --fixup HEAD && git push && :
 	cp = cherry-pick
   mbs = !git branch -a | grep tamas
+	perm-reset = !git diff -p -R --no-color | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
+  nb = "!f() { git co master && git pull -p && git cob $1; }; f"
 
 [pull]
 	ff-only = true
