@@ -32,6 +32,7 @@ case `uname` in
   Darwin)
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export PYTHON_CONFIGURE_OPTS="--enable-framework"
   ;;
 
   Linux)
@@ -40,9 +41,8 @@ export LANG=C.UTF-8
   ;;
 esac
 
-export PYTHON_CONFIGURE_OPTS="--enable-framework"
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$HOME/Library/Python/3.6/bin:$PATH:$HOME/.linuxbrew/bin"
+export PATH="$PYENV_ROOT/bin:$HOME/Library/Python/3.6/bin:$PATH:$HOME/.linuxbrew/bin:$HOME/.poetry/bin:$(yarn global bin)"
 export HOSTALIASES=$HOME/.hosts
 
 export EDITOR=nvim
