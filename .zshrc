@@ -49,9 +49,10 @@ export TERM=xterm-256color
 export CONAN_VERBOSE_TRACEBACK=1
 export DOTNET_TELEMETRY_OPTOUT=1
 
+source $HOME/.zsh_aliases
+source $HOME/.zprofile
+
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-source $HOME/.zsh_aliases
-source $HOME/.zprofile
