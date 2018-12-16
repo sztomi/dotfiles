@@ -13,6 +13,7 @@
       ".gitconfig": "$HOME/.gitconfig",
       ".gitignore_global": "$HOME/.gitignore_global",
       ".hosts": "$HOME/.hosts",
+      ".profile": "$HOME/.profile",
       ".ssh/config": "$HOME/.ssh/config",
       ".tmux.conf": "$HOME/.tmux.conf",
       ".zprofile": "$HOME/.zprofile",
