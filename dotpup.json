@@ -17,6 +17,7 @@
       ".profile": "$HOME/.profile",
       ".ssh/config": "$HOME/.ssh/config",
       ".tmux.conf": "$HOME/.tmux.conf",
+      ".xbindkeysrc": "$HOME/.xbindkeysrc",
       ".zprofile": "$HOME/.zprofile",
       ".zsh_aliases": "$HOME/.zsh_aliases",
       ".zshrc": "$HOME/.zshrc"
