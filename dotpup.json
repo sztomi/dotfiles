@@ -10,6 +10,7 @@
     },
     "Linux": {
       ".config/nvim/init.vim": "$HOME/.config/nvim/init.vim",
+      ".config/rofi/config": "$HOME/.config/rofi/config",
       ".gitconfig": "$HOME/.gitconfig",
       ".gitignore_global": "$HOME/.gitignore_global",
       ".hosts": "$HOME/.hosts",
