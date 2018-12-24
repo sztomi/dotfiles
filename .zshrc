@@ -8,8 +8,9 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "b4b4r07/enhancd", at:v1
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "supercrabtree/k"
-zplug aperezdc/zsh-fzy
-zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
+zplug "aperezdc/zsh-fzy"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -32,6 +33,7 @@ bindkey '\ec' fzy-cd-widget
 bindkey '^T'  fzy-file-widget
 bindkey '^R'  fzy-history-widget
 bindkey '^P'  fzy-proc-widget
+bindkey '^ ' autosuggest-execute
 
 case `uname` in
   Darwin)
