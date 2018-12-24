@@ -16,12 +16,15 @@ function! BuildYCM(info)
 endfunction
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
-
 call plug#end()
+
 
 " Looks
 "
 set termguicolors
+let &t_8f = "\e[38;2;%lu;%lu;%lum"
+let &t_8b = "\e[48;2;%lu;%lu;%lum"
+let &t_ut=''
 :let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 set background=dark
 colorscheme onedark
