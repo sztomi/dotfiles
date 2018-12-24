@@ -10,11 +10,13 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # zplug
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-
-chsh -s $(which zsh)
+ 
+if [ -n "$ZSH_VERSION" ]; then
+  chsh -s $(which zsh)
+fi
 
 pip install thefuck
-gem install colorls
+gem install --user-install colorls
 
 # node
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
