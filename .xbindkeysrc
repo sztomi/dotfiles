@@ -1,0 +1,9 @@
+
+"xbindkeys_show"
+  control+shift + q
+
+"rofi -show drun -sort -matching fuzzy -show-icons"
+  Mod4 + space
+
+"/home/tamas/.local/bin/kitty &"
+  Mod4 + Return
