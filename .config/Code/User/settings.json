@@ -1,0 +1,27 @@
+{
+
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    "window.titleBarStyle": "custom",
+    "extensions.ignoreRecommendations": false,
+    "editor.trimAutoWhitespace": true,
+    "editor.tabSize": 2,
+    "editor.rulers": [79],
+    "gitlens.statusBar.enabled": false,
+    "gitlens.settings.mode": "advanced",
+    "editor.minimap.enabled": false,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.sideBar.location": "right",
+    "d.dubPath": "/home/tamas/.local/share/code-d/bin/dub",
+    "d.servedPath": "/home/tamas/.local/share/code-d/bin/serve-d",
+    "editor.fontFamily": "'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "workbench.iconTheme": "eq-material-theme-icons-palenight",
+    "editor.fontSize": 13,
+    "editor.renderIndentGuides": false,
+    "gitlens.mode.active": "zen",
+    "keyboard.dispatch": "keyCode"
+}

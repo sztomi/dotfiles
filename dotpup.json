@@ -9,6 +9,8 @@
       ".zshrc": "$HOME/.zshrc"
     },
     "Linux": {
+      ".config/Code/User/settings.json": "$HOME/.config/Code/User/settings.json",
+      ".config/Code/User/syncLocalSettings.json": "$HOME/.config/Code/User/syncLocalSettings.json",
       ".config/nvim/init.vim": "$HOME/.config/nvim/init.vim",
       ".config/rofi/config": "$HOME/.config/rofi/config",
       ".gitconfig": "$HOME/.gitconfig",
