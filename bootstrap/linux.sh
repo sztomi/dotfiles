@@ -14,6 +14,7 @@ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/instal
 chsh -s $(which zsh)
 
 pip install thefuck
+gem install colorls
 
 # node
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
@@ -31,3 +32,6 @@ ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
 cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications
 sed -i "s/Icon\=kitty/Icon\=\/home\/$USER\/.local\/kitty.app\/share\/icons\/hicolor\/256x256\/apps\/kitty.png/g" ~/.local/share/applications/kitty.desktop
 
+# linuxbrew
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+brew install fd neovim
