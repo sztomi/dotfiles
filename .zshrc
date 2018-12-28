@@ -9,7 +9,6 @@ export SPACESHIP_VI_MODE_SHOW=false
 zplug "zsh-users/zsh-history-substring-search"
 zplug "b4b4r07/enhancd", at:v1
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "supercrabtree/k"
 zplug "aperezdc/zsh-fzy"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
