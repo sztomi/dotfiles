@@ -1,4 +1,6 @@
 export ZPLUG_HOME="$HOME/.zplug"
+
+source $HOME/.zprofile
 source ~/.zplug/init.zsh
 
 # zplug
@@ -21,7 +23,6 @@ fi
 zplug load
 
 source $HOME/.zsh_aliases
-source $HOME/.zprofile
 
 # History
 
