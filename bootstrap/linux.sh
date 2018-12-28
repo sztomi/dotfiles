@@ -48,7 +48,7 @@ else
   echo " - colorls already installed"
 fi
 
-declare -A PIP_PACKAGES=([fuck]='thefuck' [dpup]='dotpup')
+declare -A PIP_PACKAGES=([fuck]='thefuck' [dpup]='dotpup' [pipenv]='pipenv')
 for cmd in "${!PIP_PACKAGES[@]}"; do
   pkg=${PIP_PACKAGES[$cmd]}
   echo "Installing $pkg"
