@@ -56,8 +56,10 @@ export TERM=xterm-256color
 export CONAN_VERBOSE_TRACEBACK=1
 export DOTNET_TELEMETRY_OPTOUT=1
 
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+if [[ -x $(command -v pyenv) ]]; then
+  if [[ -z "$POETRY_ACTIVE" ]]; then
+    eval "$(pyenv init -)"
+  fi
 fi
 
 # fuck
