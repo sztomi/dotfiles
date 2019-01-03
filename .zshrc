@@ -4,8 +4,8 @@ source $HOME/.zprofile
 source ~/.zplug/init.zsh
 
 # zplug
-export SPACESHIP_VI_MODE_SHOW=false
 
+export SPACESHIP_VI_MODE_SHOW=false
 zplug "zsh-users/zsh-history-substring-search"
 zplug "b4b4r07/enhancd", at:v1
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
@@ -24,7 +24,7 @@ zplug load
 source $HOME/.zsh_aliases
 
 # History
-
+setopt histignorespace
 export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTFILE=~/.zsh_history
