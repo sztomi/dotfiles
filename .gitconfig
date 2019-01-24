@@ -9,6 +9,7 @@
 	cm = commit
 	fix = commit --fixup HEAD
 	ls = log --oneline
+  lsh = !git ls | head
 	st = status -sb
 	rb = rebase
 	rbc = rebase --continue
@@ -27,3 +28,6 @@
 	autosquash = true
 [push]
 	default = current
+
+[color]
+  ui = always
