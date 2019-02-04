@@ -3,22 +3,24 @@
 	name = Tamás Szelei
 
 [alias]
-	co = checkout
-	cob = checkout -b
+	afp = !git add -u && git commit --fixup HEAD && git push && :
 	au = add -u
 	cm = commit
-	fix = commit --fixup HEAD
-	ls = log --oneline
-  lsh = !git ls | head
-	st = status -sb
-	rb = rebase
-	rbc = rebase --continue
-	rba = rebase --abort
-	purr = pull --rebase
-	afp = !git add -u && git commit --fixup HEAD && git push && :
+	co = checkout
+	cob = checkout -b
 	cp = cherry-pick
-  mbs = !git branch -a | grep tamas
+	fix = commit --fixup HEAD
+	fp = fetch -p
+	ls = log --oneline
 	perm-reset = !git diff -p -R --no-color | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
+	purr = pull --rebase
+	rb = rebase
+	rba = rebase --abort
+	rbc = rebase --continue
+	rbm = "!f() { git fetch -p origin master && git rebase -i origin/master; }; f"
+	st = status -sb
+  lsh = !git ls | head
+  mbs = !git branch -a | grep tamas
   nb = "!f() { git co master && git pull -p && git cob $1; }; f"
 
 [pull]
