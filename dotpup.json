@@ -5,6 +5,7 @@
       ".gitconfig": "$HOME/.gitconfig",
       ".gitignore_global": "$HOME/.gitignore_global",
       ".tmux.conf": "$HOME/.tmux.conf",
+      ".zprofile": "$HOME/.zprofile",
       ".zsh_aliases": "$HOME/.zsh_aliases",
       ".zshrc": "$HOME/.zshrc"
     },

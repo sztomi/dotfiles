@@ -1,4 +1,10 @@
+case `uname` in
+  Linux)
+  echo boop
 setxkbmap -option caps:swapescape
+  ;;
+esac
+
 
 export NVM_DIR="$HOME/.nvm"
 [[ -s $NVM_DIR/nvm.sh ]] && . $NVM_DIR/nvm.sh  # This loads NVM
