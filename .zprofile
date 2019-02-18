@@ -1,6 +1,5 @@
 case `uname` in
   Linux)
-  echo boop
 setxkbmap -option caps:swapescape
   ;;
 esac
