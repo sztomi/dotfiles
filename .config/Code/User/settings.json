@@ -19,9 +19,10 @@
     "d.dubPath": "/home/tamas/.local/share/code-d/bin/dub",
     "d.servedPath": "/home/tamas/.local/share/code-d/bin/serve-d",
     "editor.fontFamily": "'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "workbench.iconTheme": "eq-material-theme-icons-palenight",
+    "workbench.iconTheme": "material-icon-theme",
     "editor.fontSize": 13,
     "editor.renderIndentGuides": false,
     "gitlens.mode.active": "zen",
-    "keyboard.dispatch": "keyCode"
+    "keyboard.dispatch": "keyCode",
+    "window.zoomLevel": 0
 }
