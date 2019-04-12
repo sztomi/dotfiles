@@ -9,6 +9,23 @@
       ".zsh_aliases": "$HOME/.zsh_aliases",
       ".zshrc": "$HOME/.zshrc"
     },
+    "FreeBSD": {
+      ".config/Code/User/settings.json": "$HOME/.config/Code/User/settings.json",
+      ".config/Code/User/syncLocalSettings.json": "$HOME/.config/Code/User/syncLocalSettings.json",
+      ".config/kitty/kitty.conf": "$HOME/.config/kitty/kitty.conf",
+      ".config/kitty/snazzy.conf": "$HOME/.config/kitty/snazzy.conf",
+      ".config/nvim/init.vim": "$HOME/.config/nvim/init.vim",
+      ".config/rofi/config": "$HOME/.config/rofi/config",
+      ".gitconfig": "$HOME/.gitconfig",
+      ".gitignore_global": "$HOME/.gitignore_global",
+      ".hosts": "$HOME/.hosts",
+      ".ssh/config": "$HOME/.ssh/config",
+      ".tmux.conf": "$HOME/.tmux.conf",
+      ".xbindkeysrc": "$HOME/.xbindkeysrc",
+      ".zprofile": "$HOME/.zprofile",
+      ".zsh_aliases": "$HOME/.zsh_aliases",
+      ".zshrc": "$HOME/.zshrc"
+    },
     "Linux": {
       ".config/Code/User/settings.json": "$HOME/.config/Code/User/settings.json",
       ".config/Code/User/syncLocalSettings.json": "$HOME/.config/Code/User/syncLocalSettings.json",
