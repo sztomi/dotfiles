@@ -42,6 +42,11 @@ export LANG=en_US.UTF-8
 export PYTHON_CONFIGURE_OPTS="--enable-framework"
   ;;
 
+  FreeBSD)
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+  ;;
+
   Linux)
 export LC_ALL=C.UTF-8
 export LANG=C.UTF-8
