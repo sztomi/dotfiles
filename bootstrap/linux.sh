@@ -29,14 +29,6 @@ else
   echo " - node already installed"
 fi
 
-echo "Installing vim-plug"
-if ! [[ -f $HOME/.local/share/nvim/site/autoload/plug.vim ]]; then
-  curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-else
-  echo " - vim-plug already installed."
-fi
-
 # kitty terminal
 echo "Installing kitty"
 if ! [[ -d $HOME/.local/kitty.app ]]; then
