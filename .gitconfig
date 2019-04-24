@@ -19,7 +19,7 @@
 	rbc = rebase --continue
 	rbm = "!f() { git fetch -p origin master && git rebase -i origin/master; }; f"
 	st = status -sb
-  lsh = !git ls | head
+  lsh = !git ls | head -20
   mbs = !git branch -a | grep tamas
   nb = "!f() { git co master && git pull -p && git cob $1; }; f"
   pp = pull -p
