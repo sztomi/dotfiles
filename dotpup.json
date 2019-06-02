@@ -28,6 +28,7 @@
     },
     "Linux": {
       ".config/Code/User/settings.json": "$HOME/.config/Code/User/settings.json",
+      ".config/Code/User/snippets": "$HOME/.config/Code/User/snippets",
       ".config/Code/User/syncLocalSettings.json": "$HOME/.config/Code/User/syncLocalSettings.json",
       ".config/kitty/kitty.conf": "$HOME/.config/kitty/kitty.conf",
       ".config/kitty/snazzy.conf": "$HOME/.config/kitty/snazzy.conf",
