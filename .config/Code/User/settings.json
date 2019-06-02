@@ -1,6 +1,7 @@
 {
 
     "gitlens.advanced.messages": {
+        "suppressFileNotUnderSourceControlWarning": true,
         "suppressShowKeyBindingsNotice": true
     },
     "window.titleBarStyle": "custom",
