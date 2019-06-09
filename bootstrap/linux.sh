@@ -12,13 +12,6 @@ else
   echo " - shell was already zsh"
 fi
 
-echo "Installing colorls"
-if ! [[ -x $(command -v colorls) ]]; then
-  gem install --user-install colorls
-else
-  echo " - colorls already installed"
-fi
-
 echo "Installing node"
 if ! [[ -x $(command -v node) ]]; then
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
@@ -29,17 +22,6 @@ else
   echo " - node already installed"
 fi
 
-# kitty terminal
-echo "Installing kitty"
-if ! [[ -d $HOME/.local/kitty.app ]]; then
-  curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-  ln -s ~/.local/kitty.app/bin/kitty ~/.local/bin/
-  cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications
-  sed -i "s/Icon\=kitty/Icon\=\/home\/$USER\/.local\/kitty.app\/share\/icons\/hicolor\/256x256\/apps\/kitty.png/g" ~/.local/share/applications/kitty.desktop
-else
-  echo " - kitty already installed"
-fi
-
 # linuxbrew
 echo "Installing linuxbrew"
 if ! [[ -d /home/linuxbrew ]]; then
@@ -47,9 +29,9 @@ if ! [[ -d /home/linuxbrew ]]; then
 else
   echo " - linuxbrew already installed"
 fi
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 
-
-declare -A BREW_PACKAGES=([fd]='fd' [nvim]='neovim' [fzy]='fzy')
+declare -A BREW_PACKAGES=([fd]='fd' [nvim]='neovim' [fzy]='fzy' [rg]='ripgrep')
 for cmd in "${!BREW_PACKAGES[@]}"; do
   pkg=${BREW_PACKAGES[$cmd]}
   echo "Installing $pkg"
