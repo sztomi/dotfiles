@@ -1,5 +1,9 @@
-zmodload zsh/zprof
+#zmodload zsh/zprof 
+touch $ZPLUG_LOADFILE
 export ZPLUG_HOME="$HOME/.zplug"
+
+export ZPLUG_LOG_LOAD_SUCCESS=false
+export ZPLUG_LOG_LOAD_FAILURE=false
 
 source $HOME/.zprofile
 source ~/.zplug/init.zsh
@@ -68,7 +72,5 @@ if [[ -x $(command -v pyenv) ]]; then
   fi
 fi
 
-# fuck
 
-eval $(thefuck --alias)
-zprof
+#zprof
