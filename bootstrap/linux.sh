@@ -12,16 +12,6 @@ else
   echo " - shell was already zsh"
 fi
 
-echo "Installing node"
-if ! [[ -x $(command -v node) ]]; then
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-  export NVM_DIR="$HOME/.nvm"
-  [[ -s $NVM_DIR/nvm.sh ]] && . $NVM_DIR/nvm.sh  # This loads NVM
-  nvm install node
-else
-  echo " - node already installed"
-fi
-
 # linuxbrew
 echo "Installing linuxbrew"
 if ! [[ -d /home/linuxbrew ]]; then
