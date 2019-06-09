@@ -9,6 +9,5 @@ export PATH="$PYENV_ROOT/bin:$HOME/Library/Python/3.6/bin:$PATH:/home/linuxbrew/
 case `uname` in
   Linux)
 setxkbmap -option caps:swapescape
-export PATH="$PATH:$(yarn global bin)"
   ;;
 esac
