@@ -15,7 +15,7 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    "workbench.colorTheme": "One Dark Pro",
+    "workbench.colorTheme": "One Dark Pro Vivid",
     "workbench.sideBar.location": "right",
     "d.dubPath": "/home/tamas/.local/share/code-d/bin/dub",
     "d.servedPath": "/home/tamas/.local/share/code-d/bin/serve-d",
