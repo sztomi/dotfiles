@@ -1,11 +1,11 @@
-#! /bin/sh
+#! /bin/bash
 
 echo "Installing pyenv"
 
 source $HOME/.zprofile
 
 if ! [[ -x $(command -v pyenv) ]]; then
-  curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | zsh
+  curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | $SHELL
 else
   echo " - pyenv already installed"
 fi
