@@ -9,6 +9,6 @@ export PATH="$PYENV_ROOT/bin:$HOME/Library/Python/3.6/bin:$PATH:/home/linuxbrew/
 case `uname` in
   Linux)
 setxkbmap -option caps:swapescape
-export PATH="$PATH:$(yarn global bin):$(python -c 'import subprocess as sp; print(sp.check_output("gem environment gempath", shell=True).decode().split(":")[0])')/bin"
+export PATH="$PATH:$(yarn global bin)"
   ;;
 esac
