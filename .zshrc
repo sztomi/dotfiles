@@ -1,3 +1,4 @@
+zmodload zsh/zprof
 export ZPLUG_HOME="$HOME/.zplug"
 
 source $HOME/.zprofile
@@ -70,3 +71,4 @@ fi
 # fuck
 
 eval $(thefuck --alias)
+zprof
