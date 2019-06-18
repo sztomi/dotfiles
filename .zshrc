@@ -1,4 +1,4 @@
-#zmodload zsh/zprof 
+#zmodload zsh/zprof
 touch $ZPLUG_LOADFILE
 export ZPLUG_HOME="$HOME/.zplug"
 
@@ -62,6 +62,7 @@ export HOSTALIASES=$HOME/.hosts
 
 export EDITOR=nvim
 export DOTPUP_HOME="$HOME/dotfiles"
+export PLZ_SCRIPT_PATH=$DOTPUP_HOME/scripts
 export TERM=xterm-256color
 export CONAN_VERBOSE_TRACEBACK=1
 export DOTNET_TELEMETRY_OPTOUT=1
