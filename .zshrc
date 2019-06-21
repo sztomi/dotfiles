@@ -1,11 +1,14 @@
 #zmodload zsh/zprof
-touch $ZPLUG_LOADFILE
+
+if [ -f $ZPLUG_LOADFILE ]; then
+  touch $ZPLUG_LOADFILE
+fi
+
 export ZPLUG_HOME="$HOME/.zplug"
 
 export ZPLUG_LOG_LOAD_SUCCESS=false
 export ZPLUG_LOG_LOAD_FAILURE=false
 
-source $HOME/.zprofile
 source ~/.zplug/init.zsh
 
 # zplug
@@ -62,10 +65,15 @@ export HOSTALIASES=$HOME/.hosts
 
 export EDITOR=nvim
 export DOTPUP_HOME="$HOME/dotfiles"
-export PLZ_SCRIPT_PATH=$DOTPUP_HOME/scripts
+export PLZ_SCRIPTS_PATH=$DOTPUP_HOME/scripts
 export TERM=xterm-256color
 export CONAN_VERBOSE_TRACEBACK=1
 export DOTNET_TELEMETRY_OPTOUT=1
+
+LOCAL_RC=.zshrc_$(hostname)
+if [ -f $LOCAL_RC ]; then
+  source $LOCAL_RC
+fi
 
 if [[ -x $(command -v pyenv) ]]; then
   if [[ -z "$POETRY_ACTIVE" ]]; then
