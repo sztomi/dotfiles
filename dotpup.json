@@ -43,7 +43,8 @@
       ".xbindkeysrc": "$HOME/.xbindkeysrc",
       ".zprofile": "$HOME/.zprofile",
       ".zsh_aliases": "$HOME/.zsh_aliases",
-      ".zshrc": "$HOME/.zshrc"
+      ".zshrc": "$HOME/.zshrc",
+      ".zshrc_paddington": "$HOME/.zshrc_paddington"
     }
   }
 }
