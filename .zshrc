@@ -1,15 +1,25 @@
 #zmodload zsh/zprof
 
-if [ -f $ZPLUG_LOADFILE ]; then
-  touch $ZPLUG_LOADFILE
-fi
-
 export ZPLUG_HOME="$HOME/.zplug"
 
 export ZPLUG_LOG_LOAD_SUCCESS=false
 export ZPLUG_LOG_LOAD_FAILURE=false
 
 source ~/.zplug/init.zsh
+
+if (( ${+ZPLUG_LOADFILE} )); then
+  touch $ZPLUG_LOADFILE
+fi
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$HOME/Library/Python/3.6/bin:$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.poetry/bin"
+
+
+case `uname` in
+  Linux)
+setxkbmap -option caps:swapescape
+  ;;
+esac
 
 # zplug
 
