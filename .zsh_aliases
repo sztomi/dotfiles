@@ -3,6 +3,6 @@ alias sudo='sudo '
 alias sc=systemctl
 alias jc=journalctl
 alias rebind='sudo killall xbindkeys && xbindkeys'
-alias k='lsd -l'
+alias k='lsd -Al'
 alias pbcopy='xclip -selection c'
 alias pbpaste='xclip -selection clipboard -o'
