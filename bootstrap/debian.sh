@@ -10,8 +10,6 @@ xz-utils tk-dev libffi-dev liblzma-dev xbindkeys xclip gawk libtinfo5 gperf \
 fonts-noto-color-emoji
 sudo apt install -y yarn --no-install-recommends
 
-sudo snap install lsd
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 echo "Running general linux steps"

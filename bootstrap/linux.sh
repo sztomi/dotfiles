@@ -12,6 +12,7 @@ else
   echo " - shell was already zsh"
 fi
 
+
 # linuxbrew
 echo "Installing linuxbrew"
 if ! [[ -d /home/linuxbrew ]]; then
@@ -21,7 +22,7 @@ else
 fi
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 
-declare -A BREW_PACKAGES=([fd]='fd' [nvim]='neovim' [fzy]='fzy' [rg]='ripgrep')
+declare -A BREW_PACKAGES=([fd]='fd' [nvim]='neovim' [fzy]='fzy' [rg]='ripgrep' [lsd]='lsd')
 for cmd in "${!BREW_PACKAGES[@]}"; do
   pkg=${BREW_PACKAGES[$cmd]}
   echo "Installing $pkg"
