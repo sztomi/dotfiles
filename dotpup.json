@@ -1,6 +1,8 @@
 {
   "operations": {
     "Darwin": {
+      ".config/Code/User/settings.json": "$HOME/Library/Application Support/Code/User/settings.json",
+      ".config/Code/User/snippets/python.json": "$HOME/Library/Application Support/Code/User/snippets/python.json",
       ".config/nvim/init.vim": "$HOME/.config/nvim/init.vim",
       ".gitconfig": "$HOME/.gitconfig",
       ".gitignore_global": "$HOME/.gitignore_global",
