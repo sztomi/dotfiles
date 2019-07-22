@@ -12,7 +12,7 @@ for cmd in "${!PIP_PACKAGES[@]}"; do
 done
 
 
-declare -A BREW_PACKAGES=([fzy]='fzy' [git]='git' [nvim]='neovim')
+declare -A BREW_PACKAGES=([fzy]='fzy' [git]='git' [nvim]='neovim' [lsd]='lsd')
 for cmd in "${!BREW_PACKAGES[@]}"; do
   pkg=${PIP_PACKAGES[$cmd]}
   echo "Installing $pkg"
