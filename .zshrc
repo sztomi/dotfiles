@@ -29,7 +29,7 @@ zplug "b4b4r07/enhancd", at:v1
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "aperezdc/zsh-fzy"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -91,5 +91,6 @@ if [[ -x $(command -v pyenv) ]]; then
   fi
 fi
 
+source ~/pure10k.zsh
 
 #zprof

@@ -44,7 +44,8 @@
       ".zprofile": "$HOME/.zprofile",
       ".zsh_aliases": "$HOME/.zsh_aliases",
       ".zshrc": "$HOME/.zshrc",
-      ".zshrc_paddington": "$HOME/.zshrc_paddington"
+      ".zshrc_paddington": "$HOME/.zshrc_paddington",
+      "pure10k.zsh": "$HOME/pure10k.zsh"
     }
   }
 }
