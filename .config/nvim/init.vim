@@ -104,7 +104,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " fzf
-nmap <C-S-P> :GFiles<CR>
+nmap <F13> :GFiles<CR>
 nmap <C-p> :Buffers<CR>
 
 " search
