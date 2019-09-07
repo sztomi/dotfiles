@@ -25,7 +25,7 @@ esac
 
 export SPACESHIP_VI_MODE_SHOW=false
 zplug "zsh-users/zsh-history-substring-search"
-zplug "b4b4r07/enhancd", at:v1
+zplug "b4b4r07/enhancd", use:init.sh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "aperezdc/zsh-fzy"
 zplug "zsh-users/zsh-autosuggestions"
@@ -94,3 +94,5 @@ fi
 source ~/pure10k.zsh
 
 #zprof
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
