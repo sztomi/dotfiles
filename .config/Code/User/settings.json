@@ -16,7 +16,7 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    "workbench.colorTheme": "One Dark Pro Vivid",
+    "workbench.colorTheme": "One Dark Pro",
     "workbench.sideBar.location": "right",
     "d.dubPath": "/home/tamas/.local/share/code-d/bin/dub",
     "d.servedPath": "/home/tamas/.local/share/code-d/bin/serve-d",
@@ -48,10 +48,15 @@
         "menubar.selectionForeground": "#2979FF"
     },
     "materialTheme.accent": "Blue",
-    "python.formatting.provider": "yapf",
+    "python.formatting.provider": "black",
     "python.formatting.yapfArgs": [
         "--style='{based_on_style: pep8, indent_width: 2}'"
     ],
     "breadcrumbs.enabled": false,
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "terminal.integrated.fontFamily": "SauceCodePro Nerd Font",
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "python.formatting.blackPath": "/home/tamas/.pyenv/shims/cblack"
 }
