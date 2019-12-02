@@ -24,7 +24,7 @@ set cursorline
 let g:airline_powerline_fonts = 1
 
 " general
-set ts=2 sts=2 sw=2
+set ts=1 sts=2 sw=2
 set expandtab
 set encoding=utf-8
 set scrolloff=3
@@ -90,6 +90,8 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 
 let mapleader = ","
