@@ -35,3 +35,5 @@
 
 [color]
   ui = always
+[core]
+	excludesfile = /home/tamas/.gitignore_global
