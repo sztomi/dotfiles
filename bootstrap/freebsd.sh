@@ -1,7 +1,7 @@
 #! /bin/sh
 
 sudo pkg install zsh python3 git fzy neovim bash bzip2 sqlite \
-  curl gcc gmake libstdc++_stldoc_4.2.2 ntp openjdk8 wget     \
+  curl gcc gmake libstdc++_stldoc_4.2.2 ntp wget     \
   autoconf v4l_compat sqlite3 gperf
 
 
