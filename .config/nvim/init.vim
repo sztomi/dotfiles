@@ -22,9 +22,11 @@ set number
 set relativenumber
 set cursorline
 let g:airline_powerline_fonts = 1
+let g:python_recommended_style = 0
 
 " general
-set ts=1 sts=2 sw=2
+set ts=2 sts=1 sw=2
+set nosmarttab
 set expandtab
 set encoding=utf-8
 set scrolloff=3
@@ -106,7 +108,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " fzf
-nmap <F13> :GFiles<CR>
+nmap <C-o> :GFiles<CR>
 nmap <C-p> :Buffers<CR>
 
 " search
