@@ -24,6 +24,8 @@
   nb = "!f() { git co master && git pull -p && git cob $1; }; f"
   pp = pull -p
 	ru = "!f() { git fp && git reset --hard @{u}; }; f"
+  cpb = "!f() { git branch --show-current | xargs echo -n | xclip -selection c; }; f"
+  cpr = "!f() { git rev-parse HEAD | xargs echo -n | xclip -selection c; }; f"
 
 [pull]
 	ff-only = true
@@ -37,3 +39,5 @@
   ui = always
 [core]
 	excludesfile = /home/tamas/.gitignore_global
+	pager = delta --dark --theme="TwoDark"
+
