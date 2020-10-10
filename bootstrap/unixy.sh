@@ -42,6 +42,13 @@ else
   echo " - vim-plug already installed."
 fi
 
+# rust
+echo "Installing rust"
+if ! [[ -x $(command -v rustc) ]]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+else
+  echo " - rust already installed"
+fi
 
 pip3 install thefuck
 pip3 install dotpup

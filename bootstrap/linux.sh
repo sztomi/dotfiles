@@ -22,7 +22,7 @@ else
 fi
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 
-declare -A BREW_PACKAGES=([fd]='fd' [nvim]='neovim' [fzy]='fzy' [rg]='ripgrep' [lsd]='lsd')
+declare -A BREW_PACKAGES=([fd]='fd' [nvim]='neovim' [fzy]='fzy' [rg]='ripgrep' [lsd]='lsd', [delta]='git-delta')
 for cmd in "${!BREW_PACKAGES[@]}"; do
   pkg=${BREW_PACKAGES[$cmd]}
   echo "Installing $pkg"
@@ -32,7 +32,6 @@ for cmd in "${!BREW_PACKAGES[@]}"; do
     echo " - $pkg already installed"
   fi
 done
-
 
 # fonts
 
