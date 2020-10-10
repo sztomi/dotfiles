@@ -29,6 +29,7 @@
 
 [pull]
 	ff-only = true
+	ff = only
 
 [rebase]
 	autosquash = true
@@ -41,3 +42,5 @@
 	excludesfile = /home/tamas/.gitignore_global
 	pager = delta --dark --theme="TwoDark"
 
+[init]
+	defaultBranch = main
