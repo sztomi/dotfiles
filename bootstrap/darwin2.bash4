@@ -1,0 +1,38 @@
+#! /usr/local/bin/bash
+
+declare -A PIP_PACKAGES=([dpup]='dotpup')
+for cmd in "${!PIP_PACKAGES[@]}"; do
+  pkg=${PIP_PACKAGES[$cmd]}
+  echo "Installing $pkg"
+  if ! [[ -x $(command -v $cmd) ]]; then
+    pip install $pkg
+  else
+    echo " - $pkg already installed"
+  fi
+done
+
+declare -A BREW_PACKAGES=([fd]='fd' [nvim]='neovim' [fzy]='fzy' [rg]='ripgrep' [lsd]='lsd', [delta]='git-delta')
+for cmd in "${!BREW_PACKAGES[@]}"; do
+  pkg=${BREW_PACKAGES[$cmd]}
+  echo "Installing $pkg"
+  if ! [[ -x $(command -v $cmd) ]]; then
+    brew install $pkg
+  else
+    echo " - $pkg already installed"
+  fi
+done
+
+echo "Installing zplug"
+if ! [ -d $HOME/.zplug ]; then
+  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+else
+  echo " - zplug already installed"
+fi
+
+echo "Installing rust"
+if ! [[ -x $(command -v rustc) ]]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+else
+  echo " - rust already installed"
+fi
+

@@ -1,26 +1,36 @@
 #! /bin/bash
+# this is pre-4.0 bash
 
-declare -A PIP_PACKAGES=([fuck]='thefuck' [dpup]='dotpup' [pipenv]='pipenv')
-for cmd in "${!PIP_PACKAGES[@]}"; do
-  pkg=${PIP_PACKAGES[$cmd]}
-  echo "Installing $pkg"
-  if ! [[ -x $(command -v $cmd) ]]; then
-    pip install $pkg
-  else
-    echo " - $pkg already installed"
-  fi
-done
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
+if ! [[ -x $(command -v brew) ]]; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" 
+else
+  echo " - brew is already installed"
+fi
 
-declare -A BREW_PACKAGES=([fzy]='fzy' [git]='git' [nvim]='neovim' [lsd]='lsd')
-for cmd in "${!BREW_PACKAGES[@]}"; do
-  pkg=${PIP_PACKAGES[$cmd]}
-  echo "Installing $pkg"
-  if ! [[ -x $(command -v $cmd) ]]; then
-    brew install $pkg
-  else
-    echo " - $pkg already installed"
-  fi
-done
+export PATH="/Users/tamas/.pyenv/bin:$PATH"
 
-brew cask install kitty
+if ! [[ -x $(command -v pyenv) ]]; then
+  curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | $SHELL
+else
+  echo " - pyenv already installed"
+fi
+
+eval "$(pyenv init -)"
+
+PYTHON_VERSION=3.6.4
+
+if ! [[ $(pyenv versions | grep $PYTHON_VERSION ) ]]; then
+  echo "Installing python $PYTHON_VERSION"
+  pyenv install 3.6.4
+fi
+
+pyenv global 3.6.4
+
+if ! [[ -f /usr/local/bin/bash ]]; then
+  brew install bash
+fi
+
+/usr/local/bin/bash $DIR/darwin2.bash4
+
