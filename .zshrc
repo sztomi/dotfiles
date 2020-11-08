@@ -7,6 +7,9 @@ fi
 
 #zmodload zsh/zprof
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 export ZPLUG_HOME="$HOME/.zplug"
 
 export ZPLUG_LOG_LOAD_SUCCESS=false
