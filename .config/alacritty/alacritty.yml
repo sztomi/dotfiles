@@ -152,7 +152,7 @@ draw_bold_text_with_bright_colors: true
 # Colors (Tango)
 colors:
   primary:
-    background: '#000000'
+    background: '#0E1010'
     foreground: '#eeeeee'
 
   # Normal colors
