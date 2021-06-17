@@ -26,6 +26,7 @@
   ru = "!f() { git fp && git reset --hard @{u}; }; f"
   cpb = "!f() { git branch --show-current | xargs echo -n | xclip -selection c; }; f"
   cpr = "!f() { git rev-parse HEAD | xargs echo -n | xclip -selection c; }; f"
+  fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | grep -v 'fixup!' | fzf | awk '{print $1}' | xargs -o git commit --fixup"
 
 [pull]
   ff-only = true
