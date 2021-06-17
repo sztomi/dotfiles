@@ -8,5 +8,13 @@
             "  args = parser.parse_args()"
         ],
         "description": "main with args"
+    },
+    "snoop": {
+        "prefix": "snoop",
+        "body": [
+            "import pysnooper",
+            "@pysnooper.snoop()",
+        ],
+        "description": "snoop function below"
     }
 }
