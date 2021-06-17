@@ -1,46 +1,61 @@
 [user]
-	email = szelei.t@gmail.com
-	name = Tamás Szelei
+  email = szelei.t@gmail.com
+  name = Tamás Szelei
 
 [alias]
-	afp = !git add -u && git commit --fixup HEAD && git push && :
-	au = add -u
-	cm = commit
-	co = checkout
-	cob = checkout -b
-	cp = cherry-pick
-	fix = commit --fixup HEAD
-	fp = fetch -p
-	ls = log --oneline
-	perm-reset = !git diff -p -R --no-color | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
-	purr = pull --rebase
-	rb = rebase
-	rba = rebase --abort
-	rbc = rebase --continue
-	rbm = "!f() { git fetch -p origin master && git rebase -i origin/master; }; f"
-	st = status -sb
+  afp = !git add -u && git commit --fixup HEAD && git push && :
+  au = add -u
+  cm = commit
+  co = checkout
+  cob = checkout -b
+  cp = cherry-pick
+  fix = commit --fixup HEAD
+  fp = fetch -p
+  ls = log --oneline
+  perm-reset = !git diff -p -R --no-color | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
+  purr = pull --rebase
+  rb = rebase
+  rba = rebase --abort
+  rbc = rebase --continue
+  rbm = "!f() { git fetch -p origin master && git rebase -i origin/master; }; f"
+  st = status -sb
   lsh = !git ls | head -20
   mbs = !git branch -a | grep tamas
   nb = "!f() { git co master && git pull -p && git cob $1; }; f"
   pp = pull -p
-	ru = "!f() { git fp && git reset --hard @{u}; }; f"
+  ru = "!f() { git fp && git reset --hard @{u}; }; f"
   cpb = "!f() { git branch --show-current | xargs echo -n | xclip -selection c; }; f"
   cpr = "!f() { git rev-parse HEAD | xargs echo -n | xclip -selection c; }; f"
 
 [pull]
-	ff-only = true
-	ff = only
+  ff-only = true
+  ff = only
 
 [rebase]
-	autosquash = true
+  autosquash = true
 [push]
-	default = current
+  default = current
 
 [color]
   ui = always
 [core]
-	excludesfile = /home/tamas/.gitignore_global
-	pager = delta --dark --theme="TwoDark"
+  excludesfile = /home/tamas/.gitignore_global
+  pager = delta --dark --theme="TwoDark"
 
 [init]
-	defaultBranch = main
+  defaultBranch = main
+[merge]
+  tool = kdiff3
+[mergetool "kdiff3"]
+  trustExitCode = false
+[mergetool "meld"]
+  trustExitCode = false
+[mergetool "bcompare"]
+  path = /usr/bin/bcompare
+[mergetool "bc3"]
+  trustExitCode = true
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
