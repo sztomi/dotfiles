@@ -2,10 +2,9 @@
 
     "gitlens.advanced.messages": {
         "suppressFileNotUnderSourceControlWarning": true,
-        "suppressShowKeyBindingsNotice": true
     },
     "window.newWindowDimensions": "maximized",
-    "extensions.ignoreRecommendations": false,
+    "extensions.ignoreRecommendations": true,
     "editor.tabSize": 2,
     "editor.rulers": [100],
     "gitlens.statusBar.enabled": false,
@@ -16,7 +15,6 @@
     "d.dubPath": "/home/tamas/.local/share/code-d/bin/dub",
     "d.servedPath": "/home/tamas/.local/share/code-d/bin/serve-d",
     "editor.fontFamily": "'JetBrains Mono', 'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "editor.renderIndentGuides": false,
     "gitlens.mode.active": "review",
     "keyboard.dispatch": "keyCode",
     "workbench.colorCustomizations": {
@@ -51,10 +49,10 @@
     "[cpp]": {
         "editor.defaultFormatter": "xaver.clang-format"
     },
-    "python.formatting.blackPath": "/home/tamas/.pyenv/shims/cblack",
+    "python.formatting.blackPath": "/home/tamas/.local/bin/cblack",
     "cmake.configureOnOpen": false,
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Darker than One Dark Pro",
+    "workbench.iconTheme": "vscode-simpler-icons",
+    "workbench.colorTheme": "Default Light+",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "ccls.codeLens.enabled": false,
@@ -63,7 +61,15 @@
     "window.menuBarVisibility": "toggle",
     "window.titleBarStyle": "custom",
     "editor.smoothScrolling": true,
-    "rust-analyzer.inlayHints.enable": false,
-    "python.languageServer": "Microsoft",
-    "rust.clippy_preference": "on"
+    "python.languageServer": "Default",
+    "rust.clippy_preference": "on",
+    "git.confirmSync": false,
+    "workbench.startupEditor": "none",
+    "editor.lineNumbers": "relative",
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "rust-analyzer.lens.enable": false,
+    "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "skip_trivial",
+    "editor.guides.indentation": false,
+    "rust-analyzer.inlayHints.closureReturnTypeHints.enable": true,
+    "rust-analyzer.inlayHints.chainingHints.enable": false,
 }
