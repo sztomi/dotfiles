@@ -22,7 +22,7 @@ if (( ${+ZPLUG_LOADFILE} )); then
 fi
 
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$HOME/Library/Python/3.6/bin:$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.poetry/bin"
+export PATH="$PYENV_ROOT/bin:$HOME/Library/Python/3.6/bin:$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin"
 
 
 case `uname` in
@@ -102,6 +102,7 @@ if [[ -x $(command -v pyenv) ]]; then
 fi
 
 source ~/pure10k.zsh
+source ~/.zprofile
 
 #zprof
 
@@ -109,3 +110,8 @@ source ~/pure10k.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+source $HOME/.zsh_functions
+source <(kubectl completion zsh)

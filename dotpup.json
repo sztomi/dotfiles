@@ -50,6 +50,7 @@
       ".xbindkeysrc": "$HOME/.xbindkeysrc",
       ".zprofile": "$HOME/.zprofile",
       ".zsh_aliases": "$HOME/.zsh_aliases",
+      ".zsh_functions": "$HOME/.zsh_functions",
       ".zshrc": "$HOME/.zshrc",
       ".zshrc_paddington": "$HOME/.zshrc_paddington",
       "pure10k.zsh": "$HOME/pure10k.zsh"

@@ -1,0 +1,9 @@
+function gt(){
+  [[ $# -eq 0 ]] && echo "Must provide environment" && return 1
+  [[ $1 = "dev" ]] && CLUSTER="dev-us-east-1" && REGION="us-east-1" && ROLE="eks-build-team-dev"
+
+  aws eks get-token --cluster-name ${CLUSTER} --region ${REGION} --role-arn arn:aws:iam::362267952554:role/${ROLE} \
+    | jq --raw-output .status.token | xclip -sel clip && \
+  echo "Token has been copied to clipboard" && \
+  xdg-open "https://eks-${CLUSTER}.plex.bz/#/login"
+}
