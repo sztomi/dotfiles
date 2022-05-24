@@ -95,23 +95,20 @@ if [ -f $LOCAL_RC ]; then
   source $LOCAL_RC
 fi
 
-if [[ -x $(command -v pyenv) ]]; then
-  if [[ -z "$POETRY_ACTIVE" ]]; then
-    eval "$(pyenv init -)"
-  fi
-fi
-
-source ~/pure10k.zsh
 source ~/.zprofile
-
-#zprof
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 
 source $HOME/.zsh_functions
 source <(kubectl completion zsh)
+
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
