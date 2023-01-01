@@ -51,3 +51,12 @@ if ! [[ -f "$FONTS_HOME/$HACK_FONT" ]]; then
 else
   echo " - fonts already installed"
 fi
+
+# flatpaks
+
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+FLATPAKS=("com.borgbase.Vorta" "com.discordapp.Discord" "com.github.PintaProject.Pinta" "com.viber.Viber" "org.inkscape.Inkscape" "tv.plex.PlexDesktop")
+for fp in $FLATPAKS; do
+  flatpak install $fp
+done
