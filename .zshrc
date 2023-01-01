@@ -5,7 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-#zmodload zsh/zprof
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -23,7 +22,7 @@ fi
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$HOME/Library/Python/3.6/bin:$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin"
-
+export UMZ_PLAY_SOUND=1
 
 case `uname` in
   Linux)
@@ -32,7 +31,6 @@ setxkbmap -option caps:swapescape
 esac
 
 # zplug
-
 export SPACESHIP_VI_MODE_SHOW=false
 zplug "zsh-users/zsh-history-substring-search"
 zplug "b4b4r07/enhancd", use:init.sh
@@ -40,6 +38,7 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "aperezdc/zsh-fzy"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
+zplug "sztomi/undistract-me-zsh"
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -106,9 +105,6 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 source $HOME/.zsh_functions
 source <(kubectl completion zsh)
 
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
