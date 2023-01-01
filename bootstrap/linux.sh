@@ -37,10 +37,10 @@ done
 
 HACK_FONT="Hack Regular Nerd Font Complete.ttf"
 FONTS_HOME="$HOME/.local/share/fonts"
-FONTS_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0"
+FONTS_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2"
 echo "Installing fonts"
 if ! [[ -f "$FONTS_HOME/$HACK_FONT" ]]; then
-  FONT_FILES=("Hack.zip" "SourceCodePro.zip")
+  FONT_FILES=("Hack.zip" "SourceCodePro.zip" "JetBrainsMono.zip")
   for i in "${!FONT_FILES[@]}"; do
     font=${FONT_FILES[$i]}
     wget "$FONTS_URL/$font"
