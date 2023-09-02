@@ -22,7 +22,13 @@ else
 fi
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 
-declare -A BREW_PACKAGES=([fd]='fd' [nvim]='neovim' [fzy]='fzy' [rg]='ripgrep' [lsd]='lsd' [delta]='git-delta')
+declare -A BREW_PACKAGES=( \
+  [fd]='fd' [nvim]='neovim' [fzy]='fzy' [rg]='ripgrep' \
+  [lsd]='lsd' [delta]='git-delta' [bat]='bat' [jfrog]='jfrog' \
+  [argocd]='argocd' [aws]='awscli' [eksctl]='eksctl' \
+  [helm]='helm' [kubectl]='kubectl' [kubeseal]='kubeseal' \
+  [k9s]='k9s' \
+)
 for cmd in "${!BREW_PACKAGES[@]}"; do
   pkg=${BREW_PACKAGES[$cmd]}
   echo "Installing $pkg"
@@ -56,7 +62,7 @@ fi
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-FLATPAKS=("com.borgbase.Vorta" "com.discordapp.Discord" "com.github.PintaProject.Pinta" "com.viber.Viber" "org.inkscape.Inkscape" "tv.plex.PlexDesktop" "com.slack.Slack")
+FLATPAKS=("com.borgbase.Vorta" "com.discordapp.Discord" "com.github.PintaProject.Pinta" "com.viber.Viber" "org.inkscape.Inkscape" "tv.plex.PlexDesktop" "com.slack.Slack" "org.wezfurlong.wezterm")
 for fp in $FLATPAKS; do
   flatpak install $fp
 done
