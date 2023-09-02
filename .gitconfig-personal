@@ -2,9 +2,6 @@
   email = szelei.t@gmail.com
   name = Tamás Szelei
 
-[includeIf "gitdir:~/work/"]
-  path = .gitconfig-work
-
 [alias]
   afp = !git add -u && git commit --fixup HEAD && git push && :
   au = add -u
