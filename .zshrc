@@ -24,12 +24,6 @@ fi
 export PATH="$PYENV_ROOT/bin:$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin"
 export UMZ_PLAY_SOUND=1
 
-case `uname` in
-  Linux)
-setxkbmap -option caps:swapescape
-  ;;
-esac
-
 # zplug
 export SPACESHIP_VI_MODE_SHOW=false
 zplug "zsh-users/zsh-history-substring-search"
@@ -97,22 +91,9 @@ fi
 source ~/.zprofile
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
 
 source $HOME/.zsh_functions
-source <(kubectl completion zsh)
 
-# export PYENV_ROOT="$HOME/.pyenv"
-# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-
-# pnpm
-export PNPM_HOME="/home/tamas/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
-source /home/tamas/.config/broot/launcher/bash/br
-source $HOME/.nx.zsh
+#source $HOME/.nx.zsh
 
