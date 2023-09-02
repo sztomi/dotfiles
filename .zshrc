@@ -20,8 +20,8 @@ if (( ${+ZPLUG_LOADFILE} )); then
   touch $ZPLUG_LOADFILE
 fi
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$HOME/Library/Python/3.6/bin:$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin"
+#export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin"
 export UMZ_PLAY_SOUND=1
 
 case `uname` in
@@ -105,6 +105,14 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 source $HOME/.zsh_functions
 source <(kubectl completion zsh)
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+
+# pnpm
+export PNPM_HOME="/home/tamas/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+source /home/tamas/.config/broot/launcher/bash/br
+source $HOME/.nx.zsh
+
