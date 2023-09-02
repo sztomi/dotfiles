@@ -3,7 +3,7 @@
     "Darwin": {
       ".config/Code/User/settings.json": "$HOME/Library/Application Support/Code/User/settings.json",
       ".config/Code/User/snippets/python.json": "$HOME/Library/Application Support/Code/User/snippets/python.json",
-      ".config/alacritty/alacritty.yml": "$HOME/.alacritty.yml",
+      ".config/alacritty/alacritty.toml": "$HOME/.alacritty.toml",
       ".config/nvim/init.vim": "$HOME/.config/nvim/init.vim",
       ".gitconfig": "$HOME/.gitconfig",
       ".gitignore_global": "$HOME/.gitignore_global",
@@ -33,7 +33,7 @@
       ".config/Code/User/settings.json": "$HOME/.config/Code/User/settings.json",
       ".config/Code/User/snippets": "$HOME/.config/Code/User/snippets",
       ".config/Code/User/syncLocalSettings.json": "$HOME/.config/Code/User/syncLocalSettings.json",
-      ".config/alacritty/alacritty.yml": "$HOME/.config/alacritty/alacritty.yml",
+      ".config/alacritty/alacritty.toml": "$HOME/.config/alacritty/alacritty.toml",
       ".config/awesome": "$HOME/.config/awesome",
       ".config/kitty/kitty.conf": "$HOME/.config/kitty/kitty.conf",
       ".config/kitty/snazzy.conf": "$HOME/.config/kitty/snazzy.conf",
