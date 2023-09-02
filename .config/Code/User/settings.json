@@ -5,51 +5,22 @@
     },
     "window.newWindowDimensions": "maximized",
     "extensions.ignoreRecommendations": true,
-    "editor.tabSize": 2,
     "editor.rulers": [100],
     "gitlens.statusBar.enabled": false,
     "gitlens.settings.mode": "advanced",
     "editor.minimap.enabled": false,
-    "files.trimFinalNewlines": true,
     "workbench.sideBar.location": "right",
-    "d.dubPath": "/home/tamas/.local/share/code-d/bin/dub",
-    "d.servedPath": "/home/tamas/.local/share/code-d/bin/serve-d",
     "editor.fontFamily": "'JetBrains Mono', 'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "gitlens.mode.active": "review",
     "keyboard.dispatch": "keyCode",
-    "workbench.colorCustomizations": {
-        "activityBarBadge.background": "#2979FF",
-        "list.activeSelectionForeground": "#2979FF",
-        "list.inactiveSelectionForeground": "#2979FF",
-        "list.highlightForeground": "#2979FF",
-        "scrollbarSlider.activeBackground": "#2979FF50",
-        "editorSuggestWidget.highlightForeground": "#2979FF",
-        "textLink.foreground": "#2979FF",
-        "progressBar.background": "#2979FF",
-        "pickerGroup.foreground": "#2979FF",
-        "tab.activeBorder": "#2979FF",
-        "notificationLink.foreground": "#2979FF",
-        "editorWidget.resizeBorder": "#2979FF",
-        "editorWidget.border": "#2979FF",
-        "settings.modifiedItemIndicator": "#2979FF",
-        "settings.headerForeground": "#2979FF",
-        "panelTitle.activeBorder": "#2979FF",
-        "breadcrumb.activeSelectionForeground": "#2979FF",
-        "menu.selectionForeground": "#2979FF",
-        "menubar.selectionForeground": "#2979FF"
-    },
-    "materialTheme.accent": "Blue",
     "python.formatting.provider": "black",
     "python.formatting.yapfArgs": [
         "--style='{based_on_style: pep8, indent_width: 2}'"
     ],
     "terminal.integrated.fontFamily": "SauceCodePro Nerd Font",
-    "[cpp]": {
-        "editor.defaultFormatter": "xaver.clang-format"
-    },
-    "python.formatting.blackPath": "2black",
+    "python.formatting.blackPath": "/home/tamas/.local/bin/cblack",
     "cmake.configureOnOpen": false,
-    "workbench.iconTheme": "vscode-simpler-icons",
+    "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "ccls.codeLens.enabled": false,
@@ -66,8 +37,6 @@
     "rust.clippy_preference": "on",
     "rust-analyzer.lens.enable": false,
     "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "skip_trivial",
-    "rust-analyzer.inlayHints.closureReturnTypeHints.enable": true,
-    "rust-analyzer.inlayHints.chainingHints.enable": false,
     "rust-analyzer.checkOnSave.command": "clippy",
     "python.analysis.autoImportCompletions": false,
     "editor.semanticTokenColorCustomizations": {
@@ -78,11 +47,38 @@
             }
         }
     },
-    "workbench.colorTheme": "Tokyo Night",
+    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
     "editor.bracketPairColorization.enabled": false,
     "editor.guides.bracketPairsHorizontal": false,
     "diffEditor.ignoreTrimWhitespace": false,
     "[shellscript]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
-    }
+    },
+    "editor.inlineSuggest.enabled": true,
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-s>": false,
+        "<C-z>": false,
+        "<C-S+O>": false
+    },
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": true,
+        "scminput": false,
+        "yaml": true
+    },
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "godot_tools.editor_path": "/home/tamas/Applications/Godot_v4.0-rc2_linux.x86_64",
+    "cmake.autoSelectActiveFolder": false,
+    "cmake.configureOnEdit": false,
+    "clangd.path": "/home/tamas/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/16.0.2/clangd_16.0.2/bin/clangd",
+    "cmake.useCMakePresets": "always",
+    "cmake.allowUnsupportedPresetsVersions": true,
+    "cmake.allowCommentsInPresetsFile": true,
+    "markdown-preview-enhanced.liveUpdate": false,
+    "editor.tabSize": 2,
+    "security.workspace.trust.untrustedFiles": "open"
 }

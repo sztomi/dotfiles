@@ -3,18 +3,27 @@
         "prefix": "__main__",
         "body": [
             "if __name__ == \"__main__\":",
-            "  from argparse import ArgumentParser",
-            "  parser = ArgumentParser()",
-            "  args = parser.parse_args()"
+            "    from argparse import ArgumentParser",
+            "    parser = ArgumentParser()",
+            "    args = parser.parse_args()"
         ],
         "description": "main with args"
     },
     "snoop": {
         "prefix": "snoop",
         "body": [
-            "import pysnooper",
-            "@pysnooper.snoop()",
+            "import snoop",
+            "@snoop.snoop()",
         ],
         "description": "snoop function below"
+    },
+    "cli": {
+        "prefix": "cli",
+        "body": [
+            "from argparse import ArgumentParser",
+            "parser = ArgumentParser()",
+            "args = parser.parse_args()"
+        ],
+        "description": "argparse"
     }
 }
