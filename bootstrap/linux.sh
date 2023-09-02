@@ -59,7 +59,7 @@ fi
 
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-FLATPAKS=("com.borgbase.Vorta" "com.discordapp.Discord" "com.github.PintaProject.Pinta" "com.viber.Viber" "org.inkscape.Inkscape" "tv.plex.PlexDesktop" "com.slack.Slack" "org.wezfurlong.wezterm")
-for fp in $FLATPAKS; do
-  flatpak install $fp
+FLATPAKS=("com.borgbase.Vorta" "com.discordapp.Discord" "com.github.PintaProject.Pinta" "com.viber.Viber" "org.inkscape.Inkscape" "tv.plex.PlexDesktop" "com.slack.Slack" "org.wezfurlong.wezterm" "org.ferdium.Ferdium")
+for fp in "${FLATPAKS[@]}"; do
+  flatpak install -y $fp
 done
