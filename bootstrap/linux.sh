@@ -24,10 +24,7 @@ export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin"
 
 declare -A BREW_PACKAGES=( \
   [fd]='fd' [nvim]='neovim' [fzy]='fzy' [rg]='ripgrep' \
-  [lsd]='lsd' [delta]='git-delta' [bat]='bat' [jfrog]='jfrog' \
-  [argocd]='argocd' [aws]='awscli' [eksctl]='eksctl' \
-  [helm]='helm' [kubectl]='kubectl' [kubeseal]='kubeseal' \
-  [k9s]='k9s' \
+  [lsd]='lsd' [delta]='git-delta' [bat]='bat' \
 )
 for cmd in "${!BREW_PACKAGES[@]}"; do
   pkg=${BREW_PACKAGES[$cmd]}
