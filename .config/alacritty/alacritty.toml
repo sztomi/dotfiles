@@ -1,7 +1,7 @@
 live_config_reload = true
 working_directory = "None"
 
-[[colors]]
+[colors]
 draw_bold_text_with_bright_colors = true
 indexed_colors = []
 
@@ -63,9 +63,6 @@ hide_when_typing = true
 [[mouse.bindings]]
 action = "PasteSelection"
 mouse = "Middle"
-
-[mouse.triple_click]
-threshold = 300
 
 [scrolling]
 history = 20000
