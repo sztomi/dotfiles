@@ -40,14 +40,14 @@ done
 
 HACK_FONT="Hack Regular Nerd Font Complete.ttf"
 FONTS_HOME="$HOME/.local/share/fonts"
-FONTS_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2"
+FONTS_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2"
 echo "Installing fonts"
 if ! [[ -f "$FONTS_HOME/$HACK_FONT" ]]; then
-  FONT_FILES=("Hack.zip" "SourceCodePro.zip" "JetBrainsMono.zip")
+  FONT_FILES=("Hack.zip" "SourceCodePro.zip" "JetBrainsMono.zip" "FiraMono.zip")
   for i in "${!FONT_FILES[@]}"; do
     font=${FONT_FILES[$i]}
     wget "$FONTS_URL/$font"
-    unzip $font -d $FONTS_HOME
+    unzip -o $font -d $FONTS_HOME
     rm $font
   done
   fc-cache -f -v
