@@ -15,8 +15,6 @@
     "FreeBSD": {
       ".config/Code/User/settings.json": "$HOME/.config/Code/User/settings.json",
       ".config/Code/User/syncLocalSettings.json": "$HOME/.config/Code/User/syncLocalSettings.json",
-      ".config/kitty/kitty.conf": "$HOME/.config/kitty/kitty.conf",
-      ".config/kitty/snazzy.conf": "$HOME/.config/kitty/snazzy.conf",
       ".config/nvim/init.vim": "$HOME/.config/nvim/init.vim",
       ".config/rofi/config": "$HOME/.config/rofi/config",
       ".gitconfig": "$HOME/.gitconfig",
@@ -35,8 +33,6 @@
       ".config/Code/User/syncLocalSettings.json": "$HOME/.config/Code/User/syncLocalSettings.json",
       ".config/alacritty/alacritty.toml": "$HOME/.config/alacritty/alacritty.toml",
       ".config/awesome": "$HOME/.config/awesome",
-      ".config/kitty/kitty.conf": "$HOME/.config/kitty/kitty.conf",
-      ".config/kitty/snazzy.conf": "$HOME/.config/kitty/snazzy.conf",
       ".config/nvim/init.vim": "$HOME/.config/nvim/init.vim",
       ".config/picom.conf": "$HOME/.config/picom.conf",
       ".config/rofi/config": "$HOME/.config/rofi/config",
