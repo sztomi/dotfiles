@@ -10,7 +10,7 @@
     "gitlens.settings.mode": "advanced",
     "editor.minimap.enabled": false,
     "workbench.sideBar.location": "right",
-    "editor.fontFamily": "'JetBrains Mono', 'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'BerkeleyMono Nerd Font', 'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "gitlens.mode.active": "review",
     "keyboard.dispatch": "keyCode",
     "python.formatting.provider": "black",
@@ -20,7 +20,7 @@
     "terminal.integrated.fontFamily": "SauceCodePro Nerd Font",
     "python.formatting.blackPath": "/home/tamas/.local/bin/cblack",
     "cmake.configureOnOpen": false,
-    "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
+    "workbench.iconTheme": "eq-material-theme-icons",
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "ccls.codeLens.enabled": false,
@@ -47,7 +47,7 @@
             }
         }
     },
-    "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
+    "workbench.colorTheme": "Default Light Modern",
     "editor.bracketPairColorization.enabled": false,
     "editor.guides.bracketPairsHorizontal": false,
     "diffEditor.ignoreTrimWhitespace": false,
@@ -80,5 +80,11 @@
     "cmake.allowCommentsInPresetsFile": true,
     "markdown-preview-enhanced.liveUpdate": false,
     "editor.tabSize": 2,
-    "security.workspace.trust.untrustedFiles": "open"
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.fontSize": 13,
+    "oneDarkPro.vivid": true,
+    "editor.lightbulb.enabled": "onCode",
+    "reflowMarkdown.preferredLineLength": 99,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
 }
