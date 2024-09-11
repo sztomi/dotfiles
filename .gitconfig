@@ -14,7 +14,7 @@
   cp = cherry-pick
   fix = commit --fixup HEAD
   fp = fetch -p
-  ls = log --oneline
+  ls = log --pretty='format:%C(auto,yellow)%h%C(auto,magenta)% %C(auto,blue)%>(12,trunc)%ad %C(auto,green)%<(20,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D' --date=short
   perm-reset = !git diff -p -R --no-color | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
   purr = pull --rebase
   rb = rebase
@@ -22,7 +22,7 @@
   rbc = rebase --continue
   rbm = "!f() { git fetch -p origin master && git rebase -i origin/master; }; f"
   st = status -sb
-  lsh = !git ls | head -20
+  lsh = !git ls -20
   mbs = !git branch -a | grep tamas
   nb = "!f() { git co master && git pull -p && git cob $1; }; f"
   pp = pull -p
@@ -30,6 +30,9 @@
   cpb = "!f() { git branch --show-current | xargs echo -n | xclip -selection c; }; f"
   cpr = "!f() { git rev-parse HEAD | xargs echo -n | xclip -selection c; }; f"
   fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | grep -v 'fixup!' | fzf | awk '{print $1}' | xargs -o git commit --fixup"
+  sync = "!f() { git fp upstream && git rebase -i upstream/master; }; f"
+  su = "!f() { git fp upstream && git reset --hard upstream/master; }; f"
+  nxb = "!nxb() { git checkout -b $(nb $1); }; nxb"
 
 [pull]
   ff-only = true
@@ -69,14 +72,65 @@
     plus-style = syntax "#001a00"
     syntax-theme = TwoDark
 
+[delta "coracias-caudatus"]
+    # author: https://github.com/clnoll
+    commit-decoration-style = ol "#7536ff"
+    commit-style = "#200078"
+    file-decoration-style = none
+    file-style = omit
+    hunk-header-decoration-style = "#cfd6ff" ul
+    hunk-header-file-style = "#858dff"
+    hunk-header-line-number-style = "#7536ff"
+    hunk-header-style = file line-number syntax
+    light = true
+    line-numbers = true
+    line-numbers-left-format = "{nm:>4} ."
+    line-numbers-left-style = "#e3ab02"
+    line-numbers-minus-style = "#ff38b6"
+    line-numbers-plus-style = "#00e0c2"
+    line-numbers-right-format = "{np:>4}  "
+    line-numbers-right-style = white
+    line-numbers-zero-style = "#cccccc"
+    minus-emph-style = bold "#ff3838" "#ffe3f7"
+    minus-style = "#ff0080"
+    plus-emph-style = "#008a81" bold "#00ffbf"
+    plus-style = syntax "#cffff3"
+    syntax-theme = GitHub
+
+[collared-trogondelta "hoopoe"]
+    # author: https://github.com/dandavison
+    light = true
+    pink = "#ffe0e0"
+    dark-pink = "#ffc0c0"
+    green = "#d0ffd0"
+    dark-green = "#a0efa0"
+    dark-green-2 = "#067a00"
+    minus-style = normal hoopoe.pink
+    minus-emph-style = normal hoopoe.dark-pink
+    minus-non-emph-style = minus-style
+    plus-style = syntax hoopoe.green
+    plus-emph-style = syntax hoopoe.dark-green
+    plus-non-emph-style = plus-style
+    minus-empty-line-marker-style = minus-style
+    plus-empty-line-marker-style = plus-style
+    commit-decoration-style = blue ol
+    commit-style = raw
+    file-style = omit
+    hunk-header-decoration-style = blue box
+    hunk-header-file-style = red
+    hunk-header-line-number-style = hoopoe.dark-green-2
+    hunk-header-style = file line-number syntax
+    syntax-theme = GitHub
+    zero-style = syntax
+
 [delta]
-  features = collared-trogon
+  features = coracias-caudatus
   whitespace-error-style = 22 reverse
 
 [init]
   defaultBranch = main
 [merge]
-  tool = kdiff3
+	tool = meld
 [mergetool "kdiff3"]
   trustExitCode = false
 [mergetool "meld"]
@@ -90,3 +144,7 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
+[diff]
+	tool = meld
+[absorb]
+    maxStack = 50
