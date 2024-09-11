@@ -19,18 +19,18 @@ fi
 
 eval "$(pyenv init -)"
 
-PYTHON_VERSION=3.6.4
+PYTHON_VERSION=3.9.18
 
 if ! [[ $(pyenv versions | grep $PYTHON_VERSION ) ]]; then
   echo "Installing python $PYTHON_VERSION"
-  pyenv install 3.6.4
+  pyenv install 3.9.18
 fi
 
-pyenv global 3.6.4
+pyenv global 3.9.18
 
 if ! [[ -f /usr/local/bin/bash ]]; then
   brew install bash
 fi
 
-/usr/local/bin/bash $DIR/darwin2.bash4
+/opt/homebrew/bin/bash $DIR/darwin2.bash4
 

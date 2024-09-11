@@ -5,7 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
@@ -20,8 +19,9 @@ if (( ${+ZPLUG_LOADFILE} )); then
   touch $ZPLUG_LOADFILE
 fi
 
-#export PYENV_ROOT="$HOME/.pyenv"
+export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin"
+eval "$(pyenv init -)"
 export UMZ_PLAY_SOUND=1
 
 # zplug
@@ -82,6 +82,7 @@ export PLZ_SCRIPTS_PATH=$DOTPUP_HOME/scripts
 export TERM=xterm-256color
 export CONAN_VERBOSE_TRACEBACK=1
 export DOTNET_TELEMETRY_OPTOUT=1
+export CONAN_COLOR_DARK=1
 
 LOCAL_RC=.zshrc_$(hostname)
 if [ -f $LOCAL_RC ]; then
@@ -93,7 +94,23 @@ source ~/.zprofile
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
-source $HOME/.zsh_functions
+#source $HOME/.zsh_functions
 
-#source $HOME/.nx.zsh
+source $HOME/.nx.zsh
 
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    eval $(ssh-agent -s)
+    for key in ~/.ssh/id_*; do
+        [[ -f $key && ! $key =~ \.pub$ ]] && ssh-add $key
+    done
+fi
+
+export MCFLY_LIGHT=TRUE
+export MCFLY_FUZZY=2
+export MCFLY_RESULTS=25
+eval "$(mcfly init zsh)"
+
+source /Users/tamas/.config/broot/launcher/bash/br
