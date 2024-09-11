@@ -1,43 +1,51 @@
 filetype plugin indent on
+
 call plug#begin('~/.config/nvim/plugged')
-
-Plug 'joshdick/onedark.vim'
-Plug 'scrooloose/nerdcommenter'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
-
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'pechorin/any-jump.vim'
+Plug 'preservim/nerdcommenter'
+Plug 'preservim/tagbar'
+Plug 'sheerun/vim-polyglot'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'xiyaowong/virtcolumn.nvim'
 call plug#end()
 
+runtime! macros/matchit.vim
+
+" LSP
+lua require "config.lsp" 
+nnoremap <silent> <C-d> :lua toggle_virtual_text()<CR>
 
 " Looks
 set termguicolors
-let &t_8f = "\e[38;2;%lu;%lu;%lum"
-let &t_8b = "\e[48;2;%lu;%lu;%lum"
-let &t_ut=''
-:let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-set background=dark
-colorscheme onedark
+colorscheme onehalflight
+set background=light
 set number
 set relativenumber
 set cursorline
-let g:airline_powerline_fonts = 1
-let g:python_recommended_style = 0
+set noshowmode  " shown by lightline
+let g:lightline = { 'colorscheme': 'one' }
 
 " general
-set ts=2 sts=1 sw=2
-set nosmarttab
+set ts=4 sts=4 sw=4
 set expandtab
+let g:python_recommended_style=0  " ffs
 set encoding=utf-8
 set scrolloff=3
 set wrap
-set textwidth=79
+set textwidth=99
+set colorcolumn=99
 set formatoptions=qrn1
 set noswapfile
 set autoread
 set mouse=a
-
-" coc.nvim
+set fixeol
 set hidden
 set nobackup
 set nowritebackup
@@ -50,7 +58,6 @@ nnoremap j gj
 nnoremap k gk
 
 inoremap jj <ESC>
-nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -58,26 +65,37 @@ nnoremap <C-l> <C-w>l
 
 " fzf
 nmap <C-o> :GFiles<CR>
+nmap <M-o> :GFiles<CR>
 nmap <C-p> :Buffers<CR>
+nmap <M-p> :Buffers<CR>
+nmap <C-k> :Files<CR>
+nmap <C-t> :BTags<CR>
+nmap <M-t> :BTags<CR>
 
 " search
 nnoremap / /\v
 vnoremap / /\v
 set ignorecase
 set smartcase
-set gdefault
 set incsearch
 set showmatch
 set hlsearch
-nnoremap <leader><space> :noh<cr>
+nnoremap <silent> <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
 
-autocmd FileType python setlocal omnifunc=omnifunc=jedi#completions
-" Reload vimrc on save
+" tags
+nmap <silent> <leader>t :TagbarToggle f<CR>
+let g:gutentags_cache_dir = $HOME . "/Library/Cache/.gutentags"
+set completeopt-=preview
+
+" CHADtree
+nnoremap <silent> <leader>v :CHADopen<cr>
+nnoremap <silent> <leader>l :call setqflist([])<cr>
+
+" vimrc convenience
+nnoremap <silent> <leader>ev :e $MYVIMRC<cr>
 augroup reload_vimrc " {
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
-
-set completeopt-=preview
