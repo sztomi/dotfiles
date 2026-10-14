@@ -9,7 +9,7 @@
   afp = !git add -u && git commit --fixup HEAD && git push && :
   au = add -u
   cm = commit
-  co = checkout
+	co = "!f() { if [ $# -eq 0 ]; then git for-each-ref --sort=-committerdate --format=\"%(committerdate:relative)%09%(refname:short)\" refs/heads/ | fzf --no-sort --height=40% --reverse | cut -f2 | xargs -r git checkout; else git checkout \"$@\"; fi; }; f"
   cob = checkout -b
   cp = cherry-pick
   fix = commit --fixup HEAD
@@ -33,6 +33,8 @@
   sync = "!f() { git fp upstream && git rebase -i upstream/master; }; f"
   su = "!f() { git fp upstream && git reset --hard upstream/master; }; f"
   nxb = "!nxb() { git checkout -b $(nb $1); }; nxb"
+  aud = "!gitstager"
+  recent = "!f() { git for-each-ref --sort=-committerdate --format=\"%(committerdate:relative)%09%(refname:short)\" refs/heads/ | fzf --no-sort --height=40% --reverse | cut -f2 | xargs -r git switch; }; f"
   track = "!f() { \
         current_branch=$(git rev-parse --abbrev-ref HEAD) && \
         git branch -u origin/\"$current_branch\" \"$current_branch\"; \

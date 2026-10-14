@@ -1,9 +1,10 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+[[ -f $HOME/.zsh_agentfix ]] && source $HOME/.zsh_agentfix
+
+if [[ "$AGENT_MODE" != "true" ]] && [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+export PATH="$HOME/.local/bin:$PATH:/home/tamas/.modular/bin"
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -19,15 +20,11 @@ if (( ${+ZPLUG_LOADFILE} )); then
   touch $ZPLUG_LOADFILE
 fi
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin"
-eval "$(pyenv init -)"
 export UMZ_PLAY_SOUND=1
 
 # zplug
 export SPACESHIP_VI_MODE_SHOW=false
 zplug "zsh-users/zsh-history-substring-search"
-zplug "b4b4r07/enhancd", use:init.sh
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "aperezdc/zsh-fzy"
 zplug "zsh-users/zsh-autosuggestions"
@@ -42,6 +39,12 @@ if ! zplug check --verbose; then
     fi
 fi
 zplug load
+
+if [[ -n "$npm_config_yes" ]] || [[ -n "$CI" ]] || [[ "$TERM_PROGRAM" == "vscode" ]] || [[ "$-" != *i* ]]; then
+  export AGENT_MODE=true
+else
+  export AGENT_MODE=false
+fi
 
 source $HOME/.zsh_aliases
 
@@ -104,19 +107,22 @@ fi
 source ~/.zprofile
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+if [[ "$AGENT_MODE" == "false" ]]; then
+  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+fi
 
 #source $HOME/.zsh_functions
 
 source $HOME/.nx.zsh
 
 export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$VOLTA_HOME/bin:$PATH"
 
 if [ -z "$SSH_AUTH_SOCK" ]; then
-    eval $(ssh-agent -s)
+    eval $(ssh-agent -s) > /dev/null
     for key in ~/.ssh/id_*; do
-        [[ -f $key && ! $key =~ \.pub$ ]] && ssh-add $key
+        [[ -f $key && ! $key =~ \.pub$ ]] && ssh-add $key > /dev/null 2>&1
     done
 fi
 
@@ -125,7 +131,7 @@ export MCFLY_FUZZY=2
 export MCFLY_RESULTS=25
 eval "$(mcfly init zsh)"
 
-source /Users/tamas/.config/broot/launcher/bash/br
+source $HOME/.config/broot/launcher/bash/br
 
 
 # BEGIN opam configuration

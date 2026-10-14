@@ -2,3 +2,5 @@
 .ccls-cache/
 .venv/
 
+
+**/.claude/settings.local.json
