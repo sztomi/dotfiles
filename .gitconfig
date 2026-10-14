@@ -33,6 +33,10 @@
   sync = "!f() { git fp upstream && git rebase -i upstream/master; }; f"
   su = "!f() { git fp upstream && git reset --hard upstream/master; }; f"
   nxb = "!nxb() { git checkout -b $(nb $1); }; nxb"
+  track = "!f() { \
+        current_branch=$(git rev-parse --abbrev-ref HEAD) && \
+        git branch -u origin/\"$current_branch\" \"$current_branch\"; \
+    }; f"
 
 [pull]
   ff-only = true

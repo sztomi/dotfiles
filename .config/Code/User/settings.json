@@ -11,7 +11,6 @@
     "editor.minimap.enabled": false,
     "workbench.sideBar.location": "right",
     "editor.fontFamily": "'BerkeleyMono Nerd Font', 'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
-    "gitlens.mode.active": "review",
     "keyboard.dispatch": "keyCode",
     "python.formatting.provider": "black",
     "python.formatting.yapfArgs": [
@@ -47,7 +46,7 @@
             }
         }
     },
-    "workbench.colorTheme": "Default Light Modern",
+    "workbench.colorTheme": "onehalf-light",
     "editor.bracketPairColorization.enabled": false,
     "editor.guides.bracketPairsHorizontal": false,
     "diffEditor.ignoreTrimWhitespace": false,
@@ -62,14 +61,16 @@
         "<C-S+O>": false
     },
     "github.copilot.enable": {
-        "*": true,
+        "*": false,
         "plaintext": true,
         "markdown": true,
         "scminput": false,
-        "yaml": true
+        "yaml": true,
+        "python": false
     },
     "[python]": {
-        "editor.formatOnType": true
+        "editor.formatOnType": true,
+        "editor.defaultFormatter": "ms-python.black-formatter"
     },
     "godot_tools.editor_path": "/home/tamas/Applications/Godot_v4.0-rc2_linux.x86_64",
     "cmake.autoSelectActiveFolder": false,
@@ -85,6 +86,13 @@
     "oneDarkPro.vivid": true,
     "editor.lightbulb.enabled": "onCode",
     "reflowMarkdown.preferredLineLength": 99,
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
+    "rust-analyzer.inlayHints.closureReturnTypeHints.enable": "always",
+    "rust-analyzer.inlayHints.closureCaptureHints.enable": true,
+    "editor.renderFinalNewline": "dimmed",
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "chat.disableAIFeatures": true,
+    "claudeCode.useTerminal": true,
+    "chat.useClaudeHooks": true,
+    "claudeCode.preferredLocation": "sidebar",
+    "gitlens.mode.active": "zen",
 }

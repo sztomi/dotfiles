@@ -32,6 +32,7 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "aperezdc/zsh-fzy"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "romkatv/powerlevel10k", use:powerlevel10k.zsh-theme
+zplug "ytakahashi/igit"
 zplug "sztomi/undistract-me-zsh"
 
 if ! zplug check --verbose; then
@@ -49,6 +50,17 @@ setopt histignorespace
 export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTFILE=~/.zsh_history
+
+# Vi mode: Esc -> normal mode, vim motions to edit the current line.
+# KEYTIMEOUT=1 kills the ~0.4s Esc lag. Set before the binds below so they
+# attach to viins (main keymap) and keep working in insert mode.
+bindkey -v
+export KEYTIMEOUT=1
+
+# In normal mode, press 'v' to open the current command in $EDITOR.
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd 'v' edit-command-line
 
 bindkey '\ec' fzy-cd-widget
 bindkey '^T'  fzy-file-widget
@@ -114,3 +126,13 @@ export MCFLY_RESULTS=25
 eval "$(mcfly init zsh)"
 
 source /Users/tamas/.config/broot/launcher/bash/br
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/Users/tamas/.opam/opam-init/init.zsh' ]] || source '/Users/tamas/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
+

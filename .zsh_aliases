@@ -7,3 +7,4 @@ alias k='lsd -Al'
 alias pbcopy='xclip -selection c'
 alias pbpaste='xclip -selection clipboard -o'
 alias wezterm='flatpak run org.wezfurlong.wezterm'
+alias nv="NVIM_APPNAME=nv nvim"
