@@ -4,6 +4,8 @@
       ".config/Code/User/settings.json": "$HOME/Library/Application Support/Code/User/settings.json",
       ".config/Code/User/snippets/python.json": "$HOME/Library/Application Support/Code/User/snippets/python.json",
       ".config/alacritty/alacritty.toml": "$HOME/.alacritty.toml",
+      ".config/lsd/colors.yaml": "$HOME/.config/lsd/colors.yaml",
+      ".config/lsd/config.yaml": "$HOME/.config/lsd/config.yaml",
       ".config/nvim/coq-user-snippets/python.snip": "$HOME/.config/nvim/coq-user-snippets/python.snip",
       ".config/nvim/init.vim": "$HOME/.config/nvim/init.vim",
       ".config/nvim/lua/config/lsp.lua": "$HOME/.config/nvim/lua/config/lsp.lua",
