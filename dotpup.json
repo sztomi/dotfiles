@@ -11,6 +11,7 @@
       ".config/nvim/lua/config/lsp.lua": "$HOME/.config/nvim/lua/config/lsp.lua",
       ".gitconfig": "$HOME/.gitconfig",
       ".gitignore_global": "$HOME/.gitignore_global",
+      ".ssh/config": "$HOME/.ssh/config",
       ".tmux.conf": "$HOME/.tmux.conf",
       ".wezterm.lua": "$HOME/.wezterm.lua",
       ".zprofile": "$HOME/.zprofile",
