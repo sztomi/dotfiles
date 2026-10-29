@@ -1,0 +1,192 @@
+#!/usr/bin/env bash
+# Worktree helpers for the bare-repo layout: <root>/.bare + one folder per worktree.
+# Used through git aliases (wa, wnb, wr, wcd, wl, wp); see ~/.gitconfig.
+set -euo pipefail
+
+me="${GIT_WT_USER:-$(git config wt.user || echo "$USER")}"
+# Forks of colleagues: origin's URL with our user name swapped for theirs.
+fork_url="${GIT_WT_FORK_URL:-$(git remote get-url origin 2>/dev/null | sed "s#\([:/]\)$me/#\1%s/#")}"
+python="${GIT_WT_PYTHON:-$(command -v python3.12 || command -v python3)}"
+
+die() { echo "git-wt: $*" >&2; exit 1; }
+
+root()
+{
+    dirname "$(git rev-parse --path-format=absolute --git-common-dir)"
+}
+
+has_local() { git show-ref --verify --quiet "refs/heads/$1"; }
+has_remote_ref() { git show-ref --verify --quiet "refs/remotes/$1"; }
+is_remote() { git remote | grep -qx "$1"; }
+
+setup_worktree() # path
+{
+    local -r wt="$1" r="$(root)"
+    # Symlinked, not copied, so e.g. Claude permissions granted in one worktree apply to all.
+    if [[ -d "$r/_template" ]]; then
+        local f
+        while IFS= read -r f; do
+            [[ -e "$wt/$f" || -L "$wt/$f" ]] && continue
+            mkdir -p "$wt/$(dirname "$f")"
+            ln -sr "$r/_template/$f" "$wt/$f"
+        done < <(cd "$r/_template" && find . -type f -printf '%P\n')
+    fi
+    if [[ "$venv" == 1 && -f "$wt/requirements.txt" ]]; then
+        echo "Creating $wt/.venv2 with $python" >&2
+        "$python" -m venv "$wt/.venv2"
+        "$wt/.venv2/bin/pip" install -q -r "$wt/requirements.txt" >&2
+    fi
+}
+
+cmd_add() # [--no-venv] <branch> [dir]
+{
+    venv=1
+    [[ "$(git config --bool wt.venv || echo true)" == true ]] || venv=0
+    if [[ "${1:-}" == "--no-venv" ]]; then venv=0; shift; fi
+    [[ $# -ge 1 ]] || die "usage: git wa [--no-venv] <branch> [dir]"
+    local arg="$1" dir="${2:-}" r branch first rest
+    r="$(root)"
+    first="${arg%%/*}"
+    rest="${arg#*/}"
+
+    local -a add
+    if has_local "$arg"; then
+        branch="$arg"
+        add=("$branch")
+    elif [[ "$arg" != "$me/"* ]] && has_local "$me/$arg"; then
+        branch="$me/$arg"
+        add=("$branch")
+    elif [[ "$arg" == */* && "$first" != "$me" && "$first" != origin ]] \
+        && { is_remote "$first" \
+            || { [[ "$fork_url" == *%s* ]] \
+                && git ls-remote --exit-code --heads "$(printf "$fork_url" "$first")" "$rest" \
+                    >/dev/null 2>&1; }; }
+    then
+        # Someone else's branch: <remote>/<branch>, the remote being their fork.
+        if ! is_remote "$first"; then
+            git remote add "$first" "$(printf "$fork_url" "$first")"
+        fi
+        git fetch -q "$first" "+refs/heads/$rest:refs/remotes/$first/$rest"
+        branch="$first-${rest//\//-}"
+        dir="${dir:-$branch}"
+        if has_local "$branch"; then
+            add=("$branch")
+        else
+            add=(--track -b "$branch" "$first/$rest")
+        fi
+    else
+        branch="$arg"
+        [[ "$branch" == "$me/"* ]] || branch="$me/$branch"
+        git fetch -q origin "+refs/heads/$branch:refs/remotes/origin/$branch" 2>/dev/null || true
+        if has_remote_ref "origin/$branch"; then
+            add=(--track -b "$branch" "origin/$branch")
+        else
+            local base
+            base="$(git config wt.base || echo upstream/master)"
+            git fetch -q "${base%%/*}" "${base#*/}"
+            add=(--no-track -b "$branch" "$base")
+        fi
+    fi
+
+    if [[ -z "$dir" ]]; then
+        dir="${branch#"$me/"}"
+        dir="${dir//\//-}"
+    fi
+    local -r wt="$r/$dir"
+    [[ ! -e "$wt" ]] || die "$wt already exists"
+
+    git worktree add -q "$wt" "${add[@]}" >&2
+    setup_worktree "$wt"
+    echo "$wt"
+}
+
+cmd_new() # [--no-venv] <ticket> [dir]
+{
+    local -a opts=()
+    if [[ "${1:-}" == "--no-venv" ]]; then opts=(--no-venv); shift; fi
+    [[ $# -ge 1 ]] || die "usage: git wnb [--no-venv] <ticket> [dir]"
+    local ticket="$1"
+    [[ "$ticket" == "$me/"* ]] || ticket="$me/$ticket"
+
+    # nb names branches <ticket>_<summary>, so an earlier branch for the ticket has another name.
+    local -a existing
+    mapfile -t existing < <(
+        {
+            git for-each-ref --format='%(refname:lstrip=2)' \
+                "refs/heads/$ticket" "refs/heads/${ticket}_*"
+            git ls-remote --heads origin "refs/heads/$ticket" "refs/heads/${ticket}_*" \
+                | sed 's#.*\trefs/heads/##'
+        } | sort -u)
+    if [[ ${#existing[@]} -gt 1 ]]; then
+        die "several branches for ${ticket#"$me/"}, pick one with git wa:$(printf '\n  %s' "${existing[@]}")"
+    fi
+
+    local branch
+    if [[ ${#existing[@]} -eq 1 ]]; then
+        branch="${existing[0]}"
+        echo "git-wt: using existing branch $branch" >&2
+    else
+        branch="$(nb "$ticket")"
+    fi
+    cmd_add "${opts[@]}" "$branch" "${@:2}"
+}
+
+cmd_remove() # [dir]
+{
+    local wt
+    if [[ $# -ge 1 ]]; then
+        wt="$(root)/$1"
+    else
+        wt="$(git rev-parse --show-toplevel)"
+    fi
+    git worktree remove "$wt"
+}
+
+cmd_cd()
+{
+    git worktree list --porcelain | awk '/^worktree /{print substr($0, 10)}' \
+        | grep -v '/\.bare$' \
+        | fzf --height=40% --reverse ${1:+--query="$1"} --select-1
+}
+
+cmd_recent() # [--no-venv] [query]
+{
+    local -a opts=()
+    if [[ "${1:-}" == "--no-venv" ]]; then opts=(--no-venv); shift; fi
+
+    local -A wt_of=()
+    local line wt=""
+    while IFS= read -r line; do
+        case "$line" in
+            "worktree "*) wt="${line#worktree }";;
+            "branch refs/heads/"*) wt_of["${line#branch refs/heads/}"]="$wt";;
+        esac
+    done < <(git worktree list --porcelain)
+
+    # "*" marks branches that already have a worktree; branch names have no spaces.
+    local pick
+    pick="$(git for-each-ref --sort=-committerdate \
+            --format='%(committerdate:relative)%09%(refname:short)' refs/heads/ \
+        | while IFS=$'\t' read -r date branch; do
+            printf '%-16s %1s %s\n' "$date" "${wt_of[$branch]:+*}" "$branch"
+        done \
+        | fzf --no-sort --height=40% --reverse ${1:+--query="$1"} \
+        | awk '{print $NF}')"
+    [[ -n "$pick" ]] || exit 1
+
+    if [[ -n "${wt_of[$pick]:-}" ]]; then
+        echo "${wt_of[$pick]}"
+    else
+        cmd_add "${opts[@]}" "$pick"
+    fi
+}
+
+case "${1:-}" in
+    add) shift; cmd_add "$@";;
+    new) shift; cmd_new "$@";;
+    remove) shift; cmd_remove "$@";;
+    cd) shift; cmd_cd "$@";;
+    recent) shift; cmd_recent "$@";;
+    root) root;;
+    *) die "usage: git-wt add|new|remove|cd|recent|root ...";;
+esac
