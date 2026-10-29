@@ -3,8 +3,21 @@
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
-if ! [[ -x $(command -v brew) ]]; then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" 
+load_brew_env() {
+  # brew is not on PATH right after installation (or in a fresh shell)
+  local candidate
+  for candidate in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+    if [[ -x $candidate ]]; then
+      eval "$($candidate shellenv)"
+      return 0
+    fi
+  done
+  return 1
+}
+
+if ! [[ -x $(command -v brew) ]] && ! load_brew_env; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  load_brew_env || { echo "brew installation failed" >&2; exit 1; }
 else
   echo " - brew is already installed"
 fi
