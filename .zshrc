@@ -125,10 +125,15 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
     done
 fi
 
-export MCFLY_LIGHT=TRUE
-export MCFLY_FUZZY=2
-export MCFLY_RESULTS=25
-eval "$(mcfly init zsh)"
+# Shell history: atuin where installed (Mac), mcfly elsewhere.
+if command -v atuin >/dev/null; then
+    eval "$(atuin init zsh --disable-up-arrow)"
+elif command -v mcfly >/dev/null; then
+    export MCFLY_LIGHT=TRUE
+    export MCFLY_FUZZY=2
+    export MCFLY_RESULTS=25
+    eval "$(mcfly init zsh)"
+fi
 
 source $HOME/.config/broot/launcher/bash/br
 
