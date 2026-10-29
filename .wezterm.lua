@@ -183,6 +183,55 @@ end
 -- ==========================================
 -- 5. DYNAMIC TAB ICONS & FORMATTING
 -- ==========================================
+
+-- Claude Code hooks set the "claude_state" user var (scripts/claude-wezterm-state.sh).
+-- Each wait gets a unique "waiting:<id>" value. Once you have looked at that
+-- pane, the value is remembered as seen, so the flag stays off after you leave
+-- until Claude asks for input again.
+local function waiting_value(pane)
+  local v = pane:get_user_vars().claude_state
+  if v and v:sub(1, 7) == 'waiting' then
+    return v
+  end
+end
+
+local function seen_table()
+  return wezterm.GLOBAL.claude_seen or {}
+end
+
+-- update-status runs about once per second; the focused pane of a focused
+-- window counts as seen.
+wezterm.on('update-status', function(window)
+  if not window:is_focused() then
+    return
+  end
+  local pane = window:active_pane()
+  local v = waiting_value(pane)
+  local key = tostring(pane:pane_id())
+  local seen = seen_table()
+  if v and seen[key] ~= v then
+    seen[key] = v
+    wezterm.GLOBAL.claude_seen = seen
+  end
+end)
+
+-- Checks every split, not just the active pane.
+local function tab_needs_attention(tab)
+  local mux_tab = wezterm.mux.get_tab(tab.tab_id)
+  if not mux_tab then
+    return false
+  end
+  local seen = seen_table()
+  for _, p in ipairs(mux_tab:panes_with_info()) do
+    local v = waiting_value(p.pane)
+    if v and seen[tostring(p.pane:pane_id())] ~= v
+        and not (tab.is_active and p.is_active) then
+      return true
+    end
+  end
+  return false
+end
+
 wezterm.on('format-tab-title', function(tab)
   local pane = tab.active_pane
   -- Concatenate title and process to ensure we catch the name regardless of shell interference
@@ -210,21 +259,30 @@ wezterm.on('format-tab-title', function(tab)
     name = tab.tab_title
   end
 
-  local title = string.format("  %d: %s %s  ", tab.tab_index + 1, icon, name)
+  local number = string.format("  %d: ", tab.tab_index + 1)
+  local label = string.format("%s %s  ", icon, name)
 
   -- 3. Remote tabs get a distinct highlight color.
   -- Local panes report domain_name "local"; SSH mux domains report their name (e.g. "mamut").
   local is_remote = pane.domain_name and pane.domain_name ~= "local"
+  local items = {}
   if is_remote then
     local bg = tab.is_active and '#c08866' or '#8f6650' -- amber/rust = remote
-    return {
-      { Background = { Color = bg } },
-      { Foreground = { Color = '#ffffff' } },
-      { Text = title },
-    }
+    table.insert(items, { Background = { Color = bg } })
+    table.insert(items, { Foreground = { Color = '#ffffff' } })
   end
+  table.insert(items, { Text = number })
 
-  return title
+  -- 4. Claude waiting for input: the label turns green, while the number keeps
+  -- the domain color so local/remote stays readable.
+  if tab_needs_attention(tab) then
+    table.insert(items, { Background = { Color = '#2f8a57' } }) -- green = needs input
+    table.insert(items, { Foreground = { Color = '#ffffff' } })
+    label = string.format("%s %s %s  ", icon, name, wezterm.nerdfonts.md_bell_ring)
+  end
+  table.insert(items, { Text = label })
+
+  return items
 end)
 
 return config
