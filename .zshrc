@@ -5,6 +5,8 @@ if [[ "$AGENT_MODE" != "true" ]] && [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-
 fi
 
 export PATH="$HOME/.local/bin:$PATH:/home/tamas/.modular/bin"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$VOLTA_HOME/bin:$PATH"
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -115,9 +117,6 @@ fi
 #source $HOME/.zsh_functions
 
 source $HOME/.nx.zsh
-
-export VOLTA_HOME="$HOME/.volta"
-export PATH="/home/linuxbrew/.linuxbrew/bin:$VOLTA_HOME/bin:$PATH"
 
 if [ -z "$SSH_AUTH_SOCK" ]; then
     eval $(ssh-agent -s) > /dev/null
