@@ -10,6 +10,7 @@
       ".config/nvim/init.vim": "$HOME/.config/nvim/init.vim",
       ".config/nvim/lua/config/lsp.lua": "$HOME/.config/nvim/lua/config/lsp.lua",
       ".gitconfig": "$HOME/.gitconfig",
+      ".gitconfig-work": "$HOME/.gitconfig-work",
       ".gitignore_global": "$HOME/.gitignore_global",
       ".ssh/config": "$HOME/.ssh/config",
       ".tmux.conf": "$HOME/.tmux.conf",
@@ -17,6 +18,7 @@
       ".zprofile": "$HOME/.zprofile",
       ".zsh_aliases": "$HOME/.zsh_aliases",
       ".zshrc": "$HOME/.zshrc",
+      "scripts/git-wclone": "$HOME/.local/bin/git-wclone",
       "scripts/git-wt": "$HOME/.local/bin/git-wt"
     },
     "FreeBSD": {
@@ -49,6 +51,7 @@
       ".config/rofi/config": "$HOME/.config/rofi/config",
       ".config/spicetify": "$HOME/.config/spicetify",
       ".gitconfig": "$HOME/.gitconfig",
+      ".gitconfig-work": "$HOME/.gitconfig-work",
       ".gitignore_global": "$HOME/.gitignore_global",
       ".hosts": "$HOME/.hosts",
       ".profile": "$HOME/.profile",
@@ -61,6 +64,7 @@
       ".zshrc": "$HOME/.zshrc",
       ".zshrc_paddington": "$HOME/.zshrc_paddington",
       "pure10k.zsh": "$HOME/pure10k.zsh",
+      "scripts/git-wclone": "$HOME/.local/bin/git-wclone",
       "scripts/git-wt": "$HOME/.local/bin/git-wt"
     }
   }

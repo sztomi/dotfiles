@@ -1,11 +1,27 @@
 #!/usr/bin/env bash
-# Worktree helpers for the bare-repo layout: <root>/.bare + one folder per worktree.
+# Worktree helpers for the bare-repo layout (see git-wclone): <root>/.bare + one folder per worktree.
 # Used through git aliases (wa, wnb, wr, wcd, wl, wp); see ~/.gitconfig.
+#   git wt <branch> [--from <base>]   shorthand for git-wt add
+#   git wt -d <branch>                remove the worktree of <branch> (branch is kept)
+
+# macOS ships bash 3.2; mapfile and associative arrays need 4+.
+if (( BASH_VERSINFO[0] < 4 )); then
+    for b in /opt/homebrew/bin/bash /usr/local/bin/bash; do
+        [[ -x "$b" ]] && exec "$b" "$0" "$@"
+    done
+    echo "git-wt: needs bash 4 or newer" >&2
+    exit 1
+fi
+
 set -euo pipefail
 
-me="${GIT_WT_USER:-$(git config wt.user || echo "$USER")}"
+# Branch prefix for our own branches; unset (personal repos) means no prefix.
+me="${GIT_WT_USER:-$(git config wt.user || true)}"
 # Forks of colleagues: origin's URL with our user name swapped for theirs.
-fork_url="${GIT_WT_FORK_URL:-$(git remote get-url origin 2>/dev/null | sed "s#\([:/]\)$me/#\1%s/#")}"
+fork_url=""
+if [[ -n "$me" ]]; then
+    fork_url="${GIT_WT_FORK_URL:-$(git remote get-url origin 2>/dev/null | sed "s#\([:/]\)$me/#\1%s/#")}"
+fi
 python="${GIT_WT_PYTHON:-$(command -v python3.12 || command -v python3)}"
 
 die() { echo "git-wt: $*" >&2; exit 1; }
@@ -19,6 +35,36 @@ has_local() { git show-ref --verify --quiet "refs/heads/$1"; }
 has_remote_ref() { git show-ref --verify --quiet "refs/remotes/$1"; }
 is_remote() { git remote | grep -qx "$1"; }
 
+# Our branches carry the wt.user prefix; folder names don't.
+own_branch() { [[ -z "$me" || "$1" == "$me/"* ]] && echo "$1" || echo "$me/$1"; }
+dir_for() { local d="${1#"$me/"}"; echo "${d//\//-}"; }
+
+# Fork setups (an "upstream" remote) branch off upstream; plain clones off origin's default branch.
+default_base()
+{
+    git config wt.base && return
+    if is_remote upstream; then
+        echo upstream/master
+    else
+        echo "origin/$(git --git-dir="$(git rev-parse --git-common-dir)" symbolic-ref --short HEAD)"
+    fi
+}
+
+# --from accepts "remote/branch" or a bare branch name, preferring fresh remote refs.
+resolve_base() # name
+{
+    local r
+    if has_remote_ref "$1"; then echo "$1"; return; fi
+    for r in upstream origin; do
+        if is_remote "$r" && git fetch -q "$r" "$1" 2>/dev/null; then
+            echo "$r/$1"
+            return
+        fi
+    done
+    has_local "$1" || die "unknown base: $1"
+    echo "$1"
+}
+
 setup_worktree() # path
 {
     local -r wt="$1" r="$(root)"
@@ -28,8 +74,8 @@ setup_worktree() # path
         while IFS= read -r f; do
             [[ -e "$wt/$f" || -L "$wt/$f" ]] && continue
             mkdir -p "$wt/$(dirname "$f")"
-            ln -sr "$r/_template/$f" "$wt/$f"
-        done < <(cd "$r/_template" && find . -type f -printf '%P\n')
+            ln -s "$r/_template/$f" "$wt/$f"
+        done < <(cd "$r/_template" && find . -type f | sed 's#^\./##')
     fi
     if [[ "$venv" == 1 && -f "$wt/requirements.txt" ]]; then
         echo "Creating $wt/.venv2 with $python" >&2
@@ -38,13 +84,26 @@ setup_worktree() # path
     fi
 }
 
-cmd_add() # [--no-venv] <branch> [dir]
+cmd_add() # [--no-venv] [--from <base>] <branch> [dir]
 {
     venv=1
     [[ "$(git config --bool wt.venv || echo true)" == true ]] || venv=0
-    if [[ "${1:-}" == "--no-venv" ]]; then venv=0; shift; fi
-    [[ $# -ge 1 ]] || die "usage: git wa [--no-venv] <branch> [dir]"
-    local arg="$1" dir="${2:-}" r branch first rest
+    local from="" arg="" dir=""
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --no-venv) venv=0;;
+            --from) shift; [[ $# -gt 0 ]] || die "--from needs a base"; from="$1";;
+            -*) die "usage: git wa [--no-venv] [--from <base>] <branch> [dir]";;
+            *)
+                if [[ -z "$arg" ]]; then arg="$1"
+                elif [[ -z "$dir" ]]; then dir="$1"
+                else die "usage: git wa [--no-venv] [--from <base>] <branch> [dir]"
+                fi;;
+        esac
+        shift
+    done
+    [[ -n "$arg" ]] || die "usage: git wa [--no-venv] [--from <base>] <branch> [dir]"
+    local r branch first rest
     r="$(root)"
     first="${arg%%/*}"
     rest="${arg#*/}"
@@ -53,9 +112,13 @@ cmd_add() # [--no-venv] <branch> [dir]
     if has_local "$arg"; then
         branch="$arg"
         add=("$branch")
-    elif [[ "$arg" != "$me/"* ]] && has_local "$me/$arg"; then
+    elif [[ -n "$me" && "$arg" != "$me/"* ]] && has_local "$me/$arg"; then
         branch="$me/$arg"
         add=("$branch")
+    elif git fetch -q origin "+refs/heads/$arg:refs/remotes/origin/$arg" 2>/dev/null; then
+        # An existing origin branch is checked out as is, even without our prefix.
+        branch="$arg"
+        add=(--track -b "$branch" "origin/$branch")
     elif [[ "$arg" == */* && "$first" != "$me" && "$first" != origin ]] \
         && { is_remote "$first" \
             || { [[ "$fork_url" == *%s* ]] \
@@ -75,23 +138,26 @@ cmd_add() # [--no-venv] <branch> [dir]
             add=(--track -b "$branch" "$first/$rest")
         fi
     else
-        branch="$arg"
-        [[ "$branch" == "$me/"* ]] || branch="$me/$branch"
+        branch="$(own_branch "$arg")"
         git fetch -q origin "+refs/heads/$branch:refs/remotes/origin/$branch" 2>/dev/null || true
         if has_remote_ref "origin/$branch"; then
             add=(--track -b "$branch" "origin/$branch")
         else
             local base
-            base="$(git config wt.base || echo upstream/master)"
-            git fetch -q "${base%%/*}" "${base#*/}"
+            if [[ -n "$from" ]]; then
+                base="$(resolve_base "$from")"
+            else
+                base="$(default_base)"
+                if is_remote "${base%%/*}"; then
+                    git fetch -q "${base%%/*}" "${base#*/}"
+                fi
+            fi
+            # No tracking: the new branch must not push/pull against its base branch.
             add=(--no-track -b "$branch" "$base")
         fi
     fi
 
-    if [[ -z "$dir" ]]; then
-        dir="${branch#"$me/"}"
-        dir="${dir//\//-}"
-    fi
+    [[ -n "$dir" ]] || dir="$(dir_for "$branch")"
     local -r wt="$r/$dir"
     [[ ! -e "$wt" ]] || die "$wt already exists"
 
@@ -105,8 +171,9 @@ cmd_new() # [--no-venv] <ticket> [dir]
     local -a opts=()
     if [[ "${1:-}" == "--no-venv" ]]; then opts=(--no-venv); shift; fi
     [[ $# -ge 1 ]] || die "usage: git wnb [--no-venv] <ticket> [dir]"
-    local ticket="$1"
-    [[ "$ticket" == "$me/"* ]] || ticket="$me/$ticket"
+    command -v nb >/dev/null || die "nb is not installed"
+    local ticket
+    ticket="$(own_branch "$1")"
 
     # nb names branches <ticket>_<summary>, so an earlier branch for the ticket has another name.
     local -a existing
@@ -144,6 +211,7 @@ cmd_remove() # [dir]
 
 cmd_cd()
 {
+    command -v fzf >/dev/null || die "fzf is not installed"
     git worktree list --porcelain | awk '/^worktree /{print substr($0, 10)}' \
         | grep -v '/\.bare$' \
         | fzf --height=40% --reverse ${1:+--query="$1"} --select-1
@@ -151,6 +219,7 @@ cmd_cd()
 
 cmd_recent() # [--no-venv] [query]
 {
+    command -v fzf >/dev/null || die "fzf is not installed"
     local -a opts=()
     if [[ "${1:-}" == "--no-venv" ]]; then opts=(--no-venv); shift; fi
 
@@ -181,6 +250,10 @@ cmd_recent() # [--no-venv] [query]
     fi
 }
 
+usage="usage: git-wt add|new|remove|cd|recent|root ...
+       git wt <branch> [--from <base>]
+       git wt -d <branch>"
+
 case "${1:-}" in
     add) shift; cmd_add "$@";;
     new) shift; cmd_new "$@";;
@@ -188,5 +261,10 @@ case "${1:-}" in
     cd) shift; cmd_cd "$@";;
     recent) shift; cmd_recent "$@";;
     root) root;;
-    *) die "usage: git-wt add|new|remove|cd|recent|root ...";;
+    -d|--delete)
+        shift
+        [[ $# -eq 1 ]] || die "$usage"
+        cmd_remove "$(dir_for "$1")";;
+    ""|-h|--help) die "$usage";;
+    *) cmd_add "$@";;
 esac

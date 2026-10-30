@@ -2,4 +2,6 @@
   email = tszelei@networkoptix.com
   name = Tamás Szelei
 
-
+# Prefix for our branches in git-wt (scripts/git-wt).
+[wt]
+  user = tszelei
